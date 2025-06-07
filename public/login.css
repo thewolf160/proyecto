@@ -1,0 +1,149 @@
+body{
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: repeat(2,50%);
+    width: 100vw;
+    height: 100vh;
+}
+
+button{
+    width: 50px;
+    height: 50px; 
+    border-radius: 50%;
+    border: 2px solid black;
+    margin: 0;
+    
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    
+    background: white;
+    cursor: pointer; 
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+}
+
+button:hover{
+    background-color: #ddd8d8;
+}
+
+/*  Lado izquierdo de la pestaña de login */
+#loginDiv{
+    margin-top: 100px;
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+button img{
+    width: 30px;
+    border-radius: 100%;
+    margin: 0;
+}
+
+h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-bottom: 0px;
+}
+
+.Campo input{
+    background-color: white;
+    font-size: 20px;
+    width: 580px;
+    height: 45px;
+    border: 0.5px solid gray;
+}
+
+.Campo input:hover{
+    background-color: #ededed;
+}
+
+.Campo label{
+    font-size: 20px;
+    opacity: 0.6;
+}
+
+.Campo{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+a{
+    text-decoration: none;
+    color: #0f214d;
+}
+
+form #M{
+    margin-left: 415px;
+    font-size: 18px;
+}
+
+#BtnMensajeIniciarSesion{
+    margin-top: 40px;
+    text-align: center;
+}
+
+#BtnMensajeIniciarSesion input{
+    background-color: #004aad;
+    font-size: 30px;
+    height: 50px;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    width: 300px;
+}
+
+#BtnMensajeIniciarSesion p{ 
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+#BtnMensajeIniciarSesion input:hover{
+    background-color: #0f214d;
+    cursor : pointer;
+}
+
+
+/* Lado derecho de la pestaña de login */
+#mensajeDiv{
+    grid-row: 1;
+    grid-column: 2;
+    background-color: #004aad;
+    border-start-start-radius: 50px;
+    border-end-start-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#Hola{
+    color: white;
+    font-weight: bold;
+    margin: 2px;
+    margin-left: 40px;
+    margin-top: 10px;
+    font-size: 90px;
+}
+
+#Bienvenido{
+    color: white;
+    font-weight: bold;
+    margin: 2px;
+    margin-left: 40px;
+    font-size: 65px;
+}
+
+#TuTienda{
+    color: white;
+    margin: 2px;
+    margin-left: 40px;
+    font-size: 50px;
+}
