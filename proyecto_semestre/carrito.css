@@ -1,0 +1,132 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Cuadro del producto ajustado */
+.cart-item {
+    background-color: #fff;
+    border: 3px solid #004080; /* Azul más oscuro */
+    padding: 30px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Información del producto */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Controles de cantidad alineados con el texto */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Botón "+ -" con nuevo diseño */
+.btn.quantity {
+    background-color: #004080; /* Azul más oscuro */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Botón "Eliminar" minimalista */
+.btn.remove {
+    background: none;
+    border: none;
+    color: #6c757d; /* Gris */
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+/* Botón "Remover todos" minimalista */
+.btn.remove-all {
+    background: none;
+    border: none;
+    color: #6c757d; /* Gris */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Contenedor de botones alineados horizontalmente */
+.extra-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 15px;
+}
+
+/* Botón "Continuar la compra" */
+.btn.checkout {
+    background-color: #6c757d; /* Gris */
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Cuadro azul de "Valor estimado" */
+.estimation-box {
+    width: 30%;
+    background-color: #004080; /* Azul más oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Texto dentro del cuadro azul */
+.estimation-box p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Botón dentro del cuadro azul */
+.btn.total-pay {
+    background-color: #6c757d; /* Gris */
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-left: 0; /* Lo mueve totalmente a la izquierda */
+}
+
+
+
+
+
+

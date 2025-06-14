@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sección del carrito -->
+        <div class="cart-section">
+            <h2>Home → Shopping Cart</h2>
+            <h1>Tu carrito de compras</h1>
+            
+            <!-- Cuadro del producto -->
+            <div class="cart-item">
+                <div class="product-info">
+                    <p><strong>Pintura:</strong> Amarilla <br>
+                        <strong>Marca:</strong> Erguesa
+                    </p>
+                    <div class="quantity-controls">
+                        <button class="btn quantity decrement">-</button>
+                        <span class="quantity">1</span>
+                        <button class="btn quantity increment">+</button>
+                    </div>
+                </div>
+                <button class="btn remove">Eliminar</button>
+            </div>
+
+            <!-- Botones adicionales debajo del cuadro -->
+            <div class="extra-buttons">
+                <button class="btn remove-all">Remover todos los ítems</button>
+                <button class="btn checkout">Continuar la compra</button>
+            </div>
+        </div>
+
+        <!-- Cuadro azul para "Valor estimado" -->
+        <div class="estimation-box">
+            <p>Valor estimado</p>
+            <button class="btn total-pay">Total a pagar</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
