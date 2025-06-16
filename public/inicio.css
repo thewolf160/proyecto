@@ -44,12 +44,13 @@ nav{
     padding: 0 40px;
     width: 100%;
     box-sizing: border-box;
+    
 }
 
 a{
     text-decoration: none;
-    color: white;
     cursor: pointer;
+    color: white;
 }
 
 #botones-nav{
@@ -57,20 +58,30 @@ a{
     gap: 16px;
     margin: 0px;
     align-items: center;
-    
+    justify-content: center;
 }
 
 .btn{
     height: 32px;
-    border: none;
+    width: 80px;
+    border: 1px black;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
    
 }
 
 .btn.iniciar{
-    color: white;
     background-color: #2ba3ec;
+    
+}
+
+.btn.crear{
+    background-color: white;
+    color: black;
 }
 
 #seccion-principal{
