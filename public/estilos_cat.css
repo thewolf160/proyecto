@@ -13,45 +13,81 @@ body {
 }
 
 
-a {
-  color: inherit;
-  text-decoration: none;
+header{
+    grid-row: 1;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background-color: #0f214d;
+
 }
 
-
-header {
-  background-color: #0d3a7f;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-header nav {
-  display: flex;
-  gap: 32px;
-}
-header nav a {
-  font-weight: 500;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.icono-usuario {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #194a9f;
-  cursor: pointer;
+ul{
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+li{
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+nav{
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.btn{
+    height: 32px;
+    width: 80px;
+    border: 1px black;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+   
+}
+
+#botones-nav{
+    display: flex;
+    gap: 16px;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.iniciar{
+  background-color: #2ba3ec;
+}
+
+.btn.crear{
+    background-color: white;
+    color: black;
+}
 
 main {
   flex-grow: 1;

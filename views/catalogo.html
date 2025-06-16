@@ -6,19 +6,23 @@
   <title>Pinturas</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="estilos_cat.css"> 
+  <link rel="stylesheet" href="../public/estilos_cat.css"> 
 </head>
 <body>
 
-<header>
-  <nav aria-label="Navegación principal">
-    <a href="#" aria-current="page" role="link" tabindex="0">Inicio</a>
-    <a href="#" role="link" tabindex="0">Contacto</a>
-  </nav>
-  <div class="icono-usuario" role="button" tabindex="0" aria-label="Perfil de usuario">
-    <span class="material-icons" aria-hidden="true">account_circle</span>
-  </div>
-</header>
+    <header>
+        <nav>
+            <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="inicio.html#contacto">Contacto</a></li>
+            </ul>
+            <div id="botones-nav">
+            <a class="btn iniciar" href="../views/inicio_sesion.html">Iniciar Sesión</a>
+            <a class="btn crear" href="../views/registro.html">Crear Cuenta</a>
+            </div>
+        </nav>
+    </header>
 
 <main>
   <h1>Pinturas</h1>
@@ -45,7 +49,7 @@
   <section class="rejilla-productos" aria-live="polite" aria-label="Lista de pinturas disponibles">
     <article class="tarjeta-producto" role="group" aria-labelledby="prod1-titulo">
       <div class="contenedor-imagen-producto">
-        <img src="img1.png" alt="Producto pintura Maxi Caucho en balde negro con naranja" />
+        <img src="../img/img1.png" alt="Producto pintura Maxi Caucho en balde negro con naranja" />
       </div>
       <h2 id="prod1-titulo" class="nombre-producto">Caucho</h2>
       <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
@@ -55,7 +59,7 @@
 
     <article class="tarjeta-producto" role="group" aria-labelledby="prod2-titulo">
       <div class="contenedor-imagen-producto">
-        <img src="img2.png" alt="Producto pintura Pintugama Vinílica en balde negro y detalle morado" />
+        <img src="../img/img2.png" alt="Producto pintura Pintugama Vinílica en balde negro y detalle morado" />
       </div>
       <h2 id="prod2-titulo" class="nombre-producto">Exterior</h2>
       <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
@@ -65,7 +69,7 @@
 
     <article class="tarjeta-producto" role="group" aria-labelledby="prod3-titulo">
       <div class="contenedor-imagen-producto">
-        <img src="img3.png" alt="Producto pintura VIP Colonial en balde amarillo con detalles blancos y grises" />
+        <img src="../img/img3.png" alt="Producto pintura VIP Colonial en balde amarillo con detalles blancos y grises" />
       </div>
       <h2 id="prod3-titulo" class="nombre-producto">Exterior</h2>
       <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
