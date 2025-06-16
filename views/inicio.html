@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/inicio.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+            <li><a href="">Inicio</a></li>
+            <li><a href="">Catálogo</a></li>
+            <li><a href="">Contacto</a></li>
+            </ul>
+            <div id="botones-nav">
+            <button class="btn iniciar">Iniciar Sesión</button>
+            <button class="btn crear">Crear Cuenta</button>
+            </div>
+        </nav>
+    </header>
+    
+    <section id="seccion-principal">
+        <div id="contenido-principal">
+            <h1>Bienvenido</h1>
+            <p>Explora nuestra amplia gama de pinturas y encuntra la tonalidad ideal para tu proyecto.</p>
+            <button id="btnexplorar">Explorar</button>
+        </div>
+    </section>
+   
+    <section class="categorias">
+        <article id="texto-categorias">
+        <h3 style="font-size: 20px;">PARA CONSTRUIR Y DECORAR</h3>
+        <p>!Lo tenemos todo!</p>
+        </article>
+        <div class="categoria domestica">
+           <a href=""> <img src="../public/imagenes/domestica.jpg" alt="Domestica">
+            <div class="texto-superpuesto">Domestica</div>
+            </a>
+        </div>
+        <div class="categoria industrial">
+            <a href=""><img src="../public/imagenes/Industrial.jpg" alt="Industrial">
+            <div class="texto-superpuesto">Industrial</div>
+            </a>
+        </div>
+        <div class="categoria medera">
+            <a href=""><img src="../public/imagenes/madera.jpg" alt="Madera">
+            <div class="texto-superpuesto">Madera</div>
+            </a>
+        </div>
+        <div class="categoria arquitectonica">
+            <a href=""><img src="../public/imagenes/arquitectonica.jpg" alt="arquitectonica">
+            <div class="texto-superpuesto">Arquitectonica</div>
+            </a>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <form action="" id="formulario-contacto">
+            <div id="entrada-nombrapellido">
+                <input type="text" name="nombre" class="entrada nombre" placeholder="Nombre">
+                <input type="text" name="apellido" class="entrada apellido" placeholder="Apellido">
+            </div>
+            <input type="email" name="correo" class="entrada correo" placeholder="Correo Electronico">
+            <textarea name="mensaje" class="entrada mensaje" placeholder="Mensaje"></textarea>
+            <button type="submit" id="btn-formcontacto">Enviar Mensaje</button>
+        </form>
+        <article id="texto-contacto">
+            <h3 style="text-align: center;">!CONTACTANOS!</h3>
+            <p>¿Necesita ayuda para elegir la pintura perfecta?
+                Dejanos tus datos y cúentanos en qué proyecto estás
+                trabajando. Nuestros expertos te asesorarán
+                sobre colores, tipos de pintura y cantidades necesarias.
+                !Respondemos en menos de 24 horas!
+            </p>
+        </article>
+    </section>
+    <footer id="pie-pagina">
+        <div class="seccion-footer">
+            <h3>¿Sabes quién está detras de tus pinturas?</h3>
+            <p>¡Conócenos! Aquí encontraras calidad,<br> amor por el detalle y colores que inspiran.</p>
+        </div>
+        <div class="seccion-footer">
+            <h3>¡¡Conoces nuestros servicios!!</h3>
+            <p>En nuestra tienda, no solo vendemos pintura...<br>¡Te ayudamos a elegir la pintura perfecta</p>
+        </div>
+        <div class="seccion-footer">
+            <h3>¡¡CONTACTANOS!!</h3>
+            <p>0416-4537225<br>0414-5026386</p>
+            <p><a href="mailto:Todocolorlara@gmail.com">todocolorlara@gmail.com</a></p>
+            <p>Carrera 19, entre calle 60 y 61</p>
+        </div>
+    </footer>
+</body>
+</html>
