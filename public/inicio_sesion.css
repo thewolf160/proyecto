@@ -10,18 +10,20 @@ body {
 }
 
 #retroceder {
-    width: 50px;
-    height: 50px; 
+    width: 3.5vw;
+    height: 3.5vw;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
     border: none;
     margin: 0;
     position: fixed; 
-    top: 30px; 
-    left: 30px; 
+    top: 2.5vh; 
+    left: 2.5vw; 
     background: white;
     cursor: pointer; 
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.3vw 0.6vw rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -30,51 +32,51 @@ body {
 
 #retroceder:hover {
     background-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-0.2vh);
+    box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.15);
 }
 
-/* Lado izquierdo (mantenemos Montserrat para consistencia) */
+/* Lado izquierdo */
 #inicioSesionDiv {
-    margin-top: 100px;
+    margin-top: 10vh;
     grid-row: 1;
     grid-column: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 60px;
+    padding: 0 4vw;
 }
 
 #retroceder img {
-    width: 25px;
-    height: 25px;
+    width: 60%;
+    height: 60%;
     transition: transform 0.3s ease;
 }
 
 #retroceder:hover img {
-    transform: translateX(-2px);
+    transform: translateX(-0.2vw);
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 3.5vw;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     margin-left: 0;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     color: #2c3e50;
 }
 
-/* Lado derecho con tipografía elegante (Playfair Display) */
+/* Lado derecho */
 #mensajeDiv {
     grid-row: 1;
     grid-column: 2;
     background: linear-gradient(135deg, #004aad 0%, #0f214d 100%);
-    border-start-start-radius: 80px;
-    border-end-start-radius: 80px;
+    border-start-start-radius: 6vw;
+    border-end-start-radius: 6vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 80px;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1) inset;
+    padding: 0 5vw;
+    box-shadow: -0.3vw 0 1vw rgba(0, 0, 0, 0.1) inset;
     font-family: 'Playfair Display', serif;
 }
 
@@ -82,19 +84,19 @@ h1 {
     color: white;
     font-weight: 700;
     margin: 0;
-    margin-bottom: 15px;
-    font-size: 96px; /* Aumentado de 72px */
+    margin-bottom: 1.5vh;
+    font-size: 7vw;
     opacity: 0.9;
     line-height: 1.1;
-    letter-spacing: 1px;
+    letter-spacing: 0.1vw;
 }
 
 #Bienvenido {
     color: white;
     font-weight: 700;
     margin: 0;
-    margin-bottom: 30px;
-    font-size: 72px; /* Aumentado de 48px */
+    margin-bottom: 3vh;
+    font-size: 5vw;
     opacity: 0.95;
     line-height: 1.2;
 }
@@ -102,33 +104,34 @@ h1 {
 #TuTienda {
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
-    font-size: 32px; /* Aumentado de 24px */
+    font-size: 2.2vw;
     font-weight: 400;
     line-height: 1.5;
     max-width: 80%;
     font-style: italic;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05vw;
 }
 
-/* Resto del CSS (igual que antes) */
+/* Campos del formulario */
 .Campo input {
     background-color: white;
-    font-size: 18px;
-    width: 100%;
-    max-width: 500px;
-    height: 50px;
+    font-size: 1.2vw;
+    width: 40vw;
+    max-width: 40vw;
+    height: 5vh;
+    min-height: 45px;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0 15px;
-    margin-top: 8px;
+    border-radius: 0.6vw;
+    padding: 0 1vw;
+    margin-top: 0.8vh;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
 }
 
 .Campo input:focus {
     outline: none;
     border-color: #004aad;
-    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.2);
+    box-shadow: 0 0 0 0.3vw rgba(0, 74, 173, 0.2);
 }
 
 .Campo input:hover {
@@ -137,14 +140,14 @@ h1 {
 }
 
 .Campo label {
-    font-size: 16px;
+    font-size: 1.1vw;
     color: #555;
     font-weight: 500;
 }
 
 .Campo {
     margin-left: 0;
-    margin-top: 25px;
+    margin-top: 2.5vh;
 }
 
 a {
@@ -161,53 +164,123 @@ a:hover {
 form #M {
     display: block;
     text-align: right;
-    margin-top: 15px;
-    font-size: 14px;
+    margin-top: 1.5vh;
+    font-size: 1vw;
 }
 
 #BtnMensajeIniciarSesion {
-    margin-top: 40px;
+    margin-top: 4vh;
     text-align: center;
 }
 
 #BtnMensajeIniciarSesion input {
     background-color: #004aad;
-    font-size: 18px;
-    height: 55px;
-    padding: 5px;
+    font-size: 1.2vw;
+    height: 5.5vh;
+    min-height: 50px;
+    padding: 0.5vh;
     color: white;
     font-weight: 600;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.8vw;
     width: 100%;
-    max-width: 300px;
+    max-width: 20vw;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05vw;
     text-transform: uppercase;
 }
 
 #BtnMensajeIniciarSesion p { 
-    font-size: 15px;
-    margin-top: 20px;
+    font-size: 1.1vw;
+    margin-top: 2vh;
     color: #666;
 }
 
 #BtnMensajeIniciarSesion input:hover {
     background-color: #003d8f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 74, 173, 0.3);
+    transform: translateY(-0.2vh);
+    box-shadow: 0 0.4vw 0.8vw rgba(0, 74, 173, 0.3);
 }
 
+/* Media Queries */
 @media (max-width: 1200px) {
-    #Hola { font-size: 72px; }
-    #Bienvenido { font-size: 56px; }
-    #TuTienda { font-size: 28px; }
-    .Campo input { max-width: 400px; }
+    #Hola { font-size: 6vw; }
+    #Bienvenido { font-size: 4.5vw; }
+    #TuTienda { font-size: 2vw; }
+    .Campo input { max-width: 30vw; }
 }
 
 @media (max-width: 900px) {
-    #Hola { font-size: 60px; }
-    #Bienvenido { font-size: 48px; }
-    #TuTienda { font-size: 24px; }
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    #mensajeDiv {
+        grid-row: 1;
+        grid-column: 1;
+        border-radius: 0;
+        border-bottom-left-radius: 6vw;
+        border-bottom-right-radius: 6vw;
+        padding: 5vh 5vw;
+    }
+    
+    #inicioSesionDiv {
+        grid-row: 2;
+        grid-column: 1;
+        margin-top: 5vh;
+        padding: 0 8vw;
+    }
+    
+    #Hola { font-size: 8vw; }
+    #Bienvenido { font-size: 6vw; }
+    #TuTienda { font-size: 3vw; }
+    
+    h1 {
+        font-size: 5vw;
+    }
+    
+    .Campo input,
+    .Campo label,
+    #BtnMensajeIniciarSesion input,
+    #BtnMensajeIniciarSesion p {
+        font-size: 2vw;
+    }
+    
+    .Campo input {
+        max-width: 60vw;
+        height: 6vh;
+    }
+    
+    #BtnMensajeIniciarSesion input {
+        max-width: 40vw;
+        height: 6vh;
+    }
+}
+
+@media (max-width: 600px) {
+    #Hola { font-size: 10vw; }
+    #Bienvenido { font-size: 7vw; }
+    #TuTienda { font-size: 4vw; }
+    
+    h1 {
+        font-size: 7vw;
+    }
+    
+    .Campo input,
+    .Campo label,
+    #BtnMensajeIniciarSesion input,
+    #BtnMensajeIniciarSesion p {
+        font-size: 3vw;
+    }
+    
+    #BtnMensajeIniciarSesion input {
+        max-width: 60vw;
+    }
+    
+    #retroceder {
+        top: 1.5vh;
+        left: 3vw;
+    }
 }
