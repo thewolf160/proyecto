@@ -116,8 +116,8 @@ h1 {
 .Campo input {
     background-color: white;
     font-size: 1.2vw;
-    width: 100%;
-    max-width: 35vw;
+    width: 40vw;
+    max-width: 40vw;
     height: 5vh;
     min-height: 45px;
     border: 1px solid #e0e0e0;

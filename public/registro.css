@@ -108,7 +108,7 @@ form {
 }
 
 .campos input {
-    width: 100%;
+    width: 40vw;
     padding: 1.5vh;
     font-size: 1.1vw;
     border: 1px solid #e0e0e0;
@@ -128,7 +128,7 @@ form {
     border-color: #b0b0b0;
 }
 
-#botonRegitrase {
+#botonRegistrarse {
     background-color: #004aad;
     color: white;
     font-size: 1.2vw;
@@ -144,7 +144,7 @@ form {
     margin: 1.7vh 0;
 }
 
-#botonRegitrase:hover {
+#botonRegistrarse:hover {
     background-color: #003d8f;
     transform: translateY(-0.2vh);
     box-shadow: 0 0.4vw 0.8vw rgba(0, 74, 173, 0.3);
