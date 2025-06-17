@@ -89,31 +89,16 @@ a{
     color: white;
 }
 
-#botones-nav{
-    display: flex;
-    gap: 16px;
-    margin: 0px;
-    align-items: center;
-    justify-content: center;
-}
 
 .btn{
     height: 32px;
-    width: 80px;
-    border: 1px black;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-<<<<<<< HEAD
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-=======
     padding: 0.5rem 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
->>>>>>> pagina-inicial
-   
+    
 }
 
 .btn.iniciar{
