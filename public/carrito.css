@@ -10,9 +10,10 @@ body {
 .contenedor {
     width: 80%;
     margin: 20px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 20px;
+    align-items: start;
 }
 
 /* Cuadro del producto ajustado */
