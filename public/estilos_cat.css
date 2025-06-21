@@ -2,8 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0;
-   
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6fa;
     line-height: 1.6;
@@ -46,7 +45,7 @@ ul{
 }
 
 li{
-    font-size: 1.1vw;
+    font-size: 1.4vw;
     color: white;
     cursor: pointer;
     font-weight: 500;
