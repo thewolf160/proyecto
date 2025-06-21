@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="inicio.css">
 </head>
 <body>
+    <div id="header-container"></div>
     <div class="contenedor">
         <!-- Sección del carrito -->
         <div class="carrito-seccion">
@@ -41,6 +43,13 @@
             <button class="btn total-pagar">Total a pagar</button>
         </div>
     </div>
+    <script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header-container').innerHTML = data;
+    });
+</script>
 </body>
 </html>
 
