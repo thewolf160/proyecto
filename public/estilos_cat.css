@@ -1,9 +1,9 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
 body {
-  margin: 0;
-   
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6fa;
     line-height: 1.6;
@@ -188,10 +188,11 @@ h1 {
 }
 
 .filtros button:hover,
-.filtros button.activo {
+.filtros :focus {
   background-color: #0571cd;
   color: white;
   transform: translateY(-0.2vh);
+  outline: none;
 }
 
 .rejilla-productos {
@@ -389,3 +390,4 @@ h1 {
     gap: 3vh;
   }
 }
+

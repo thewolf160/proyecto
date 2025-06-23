@@ -10,73 +10,52 @@
 </head>
 <body>
 
-    <header>
-        <nav>
-            <ul>
+  <header>
+      <nav>
+          <ul>
             <li><a href="inicio.html">Inicio</a></li>
             <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="inicio.html#contacto">Contacto</a></li>
-            </ul>
-            <div id="botones-nav">
+          </ul>
+          <div id="botones-nav">
             <a class="btn iniciar" href="../views/inicio_sesion.html">Iniciar Sesión</a>
             <a class="btn crear" href="../views/registro.html">Crear Cuenta</a>
-            </div>
-        </nav>
-    </header>
+          </div>
+      </nav>
+  </header>
 
-<main>
-  <h1>Pinturas</h1>
+  <main>
+    <h1>Pinturas</h1>
 
-  <div class="contenedor-busqueda" role="search">
-    <span class="material-icons" aria-hidden="true">search</span>
-    <input
-      type="search"
-      id="inputBuscar"
-      name="buscar"
-      placeholder="Buscar"
-      aria-label="Buscar pinturas"
-      maxlength="50"
-      autocomplete="off"
-    />
-  </div>
+    <div class="contenedor-busqueda" role="search">
+      <span class="material-icons" aria-hidden="true">search</span>
+      <input type="search" id="inputBuscar" name="buscar" placeholder="Buscar" aria-label="Buscar pinturas" maxlength="50" autocomplete="off"/>
+    </div>
 
-  <div class="filtros" role="group" aria-label="Filtros de productos">
-    <button type="button" class="activo" aria-pressed="true">Color</button>
-    <button type="button" aria-pressed="false">Interior</button>
-    <button type="button" aria-pressed="false">Exterior</button>
-  </div>
+    <div class="filtros" role="group" aria-label="Filtros de productos">
+      <button type="button" aria-pressed="false" id="todoC">Todo</button>
+      <button type="button" aria-pressed="false" id="domesticaC">Domestica</button>
+      <button type="button" aria-pressed="false" id="industrialC">Industrial</button>
+      <button type="button" aria-pressed="false" id="maderaC">Madera</button>
+      <button type="button" aria-pressed="false" id="arquitectonicaC">Arquitectónica</button>
+    </div>
 
-  <section class="rejilla-productos" aria-live="polite" aria-label="Lista de pinturas disponibles">
-    <article class="tarjeta-producto" role="group" aria-labelledby="prod1-titulo">
-      <div class="contenedor-imagen-producto">
-        <img src="../img/img1.png" alt="Producto pintura Maxi Caucho en balde negro con naranja" />
-      </div>
-      <h2 id="prod1-titulo" class="nombre-producto">Caucho</h2>
-      <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
-      <div class="precio">12$</div>
-      <button class="btn-seleccionar" type="button">Seleccionar Opciones</button>
-    </article>
+    <section class="rejilla-productos" aria-live="polite" aria-label="Lista de pinturas disponibles">
+      <article class="tarjeta-producto" role="group" aria-labelledby="prod1-titulo">
+        <div class="contenedor-imagen-producto" id="imagen-producto">
+          <img src="https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_250_ml_2.jpg" alt="Producto" />
+        </div>
+        <h2 id="prod-titulo" class="nombre-producto">Nombre del producto</h2>
+        <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
+        <p class="productos-disponibles">Productos disponibles</p>
+        <div class="precio">precio</div>
+        <button class="btn-seleccionar" type="button">Seleccionar Opciones</button>
+      </article>
+    </section>
 
-    <article class="tarjeta-producto" role="group" aria-labelledby="prod2-titulo">
-      <div class="contenedor-imagen-producto">
-        <img src="../img/img2.png" alt="Producto pintura Pintugama Vinílica en balde negro y detalle morado" />
-      </div>
-      <h2 id="prod2-titulo" class="nombre-producto">Exterior</h2>
-      <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
-      <div class="precio">12$</div>
-      <button class="btn-seleccionar" type="button">Seleccionar Opciones</button>
-    </article>
+    <dialog id="modal"></dialog>
 
-    <article class="tarjeta-producto" role="group" aria-labelledby="prod3-titulo">
-      <div class="contenedor-imagen-producto">
-        <img src="../img/img3.png" alt="Producto pintura VIP Colonial en balde amarillo con detalles blancos y grises" />
-      </div>
-      <h2 id="prod3-titulo" class="nombre-producto">Exterior</h2>
-      <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
-      <div class="precio">12$</div>
-      <button class="btn-seleccionar" type="button">Seleccionar Opciones</button>
-    </article>
-  </section>
-</main>
+  </main>
+  <script src="../public/adicional.js"></script>
 </body>
 </html>
