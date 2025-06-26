@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <title>PincOs-Registro</title>
-    <link rel="stylesheet" href="../public/registro.css">
+    <link rel="stylesheet" href="../public/css/registro.css">
 </head>
 <body>
 
-    <a href="inicio.html" id="retroceder"><img src="../img/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
+    <a href="inicio.html" id="retroceder"><img src="../public/img/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
 
     <div id="LadoIzquierdo">
 
@@ -22,7 +22,10 @@
 
         <h1>Registrase</h1>
 
-        <form action="">
+        <form  id="formulario_registro" method="post" action="../controllers/comunicacion.php">
+            
+            <input type="hidden" name="seccion" value="Registrarse">
+        
             <div class="campos">
                 <label for="INombre">Nombre Completo</label>
                 <input type="text" name="INombre" id="INombre">
@@ -48,8 +51,14 @@
                 <input type="password" name="IContraseña" id="IContraseña">
             </div>
 
+            <div>
+                <p id="ErroresRegistro"></p>
+            </div>
+
             <input type="submit" id="botonRegistrarse" value="Registrarse">
         </form>
     </div>  
+
+    <script src="../public/scripts/mensaje.js"></script>
 </body>
 </html>
