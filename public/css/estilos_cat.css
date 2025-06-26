@@ -2,130 +2,33 @@
   box-sizing: border-box;
 }
 
+html, body{
+  height: 100%;
+      margin: 0;
+      padding: 0;
+}
+
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 3.75rem 1fr;
+    font-family: 'Montserrat', sans-serif;
     background-color: #f4f6fa;
-    line-height: 1.6;
     color: #333;
 }
 
-header{
-    grid-row: 1;
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: #0f214d;
-    padding: 0.5rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 
-}
-
-nav{
-    display: flex;
-    height: 50px;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-ul{
-    display: flex;
-    gap: 2.5vw;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-}
-
-li{
-    font-size: 1.1vw;
-    color: white;
-    cursor: pointer;
-    font-weight: 500;
-    letter-spacing: 0.06vw;
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-li:hover {
-    color: #2ba3ec;
-}
-
-li::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #2ba3ec;
-    transition: width 0.3s ease;
-}
-
-li:hover::after {
-    width: 100%;
-}
-
-
-a{
-    text-decoration: none;
-    cursor: pointer;
-    color: white;
-}
-
-
-.btn{
-    height: 32px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    
-}
-
-.btn.iniciar{
-    background-color: #2ba3ec;
-    
-}
-
-.btn.crear{
-    background-color: white;
-    color: black;
-}
-
-.btn.iniciar:hover {
-    background-color: #1e8bc7;
-}
-
-.btn.crear {
-    background-color: transparent;
-    border: 2px solid #f6f6f6;
-    color: #f6f6f6;
-    
-}
-
-.btn.crear:hover {
-    background-color: #f6f6f6;
-    color: black;
-    
-}
 
 main {
-  flex-grow: 1;
-  padding: 3vh 2vw;
-  max-width: 80vw;
-  margin: 6vh 0 0 0;
-  width: 100%;
+      grid-row: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
 }
 
 h1 {

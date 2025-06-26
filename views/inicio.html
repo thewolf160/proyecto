@@ -8,19 +8,8 @@
     <title>PincOs - Inicio</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-            <li><a href="#seccion-principal">Inicio</a></li>
-            <li><a href="catalogo.html#todoC">Catálogo</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <div id="botones-nav">
-            <a class="btn iniciar" href="../views/inicio_sesion.html">Iniciar Sesión</a>
-            <a class="btn crear" href="../views/registro.html">Crear Cuenta</a>
-            </div>
-        </nav>
-    </header>
+
+    <div id="navbar"></div>
     
     <section id="seccion-principal">
         <div id="contenido-principal">
@@ -59,13 +48,11 @@
 
     <section id="contacto">
         <form action="" id="formulario-contacto">
-            <div id="entrada-nombrapellido">
-                <input type="text" name="nombre" class="entrada nombre" placeholder="Nombre">
-                <input type="text" name="apellido" class="entrada apellido" placeholder="Apellido">
-            </div>
-            <input type="email" name="correo" class="entrada correo" placeholder="Correo Electronico">
+            <input type="text" name="nombre" class="entrada nombre" placeholder="Nombre">
+            <input type="text" name="apellido" class="entrada apellido" placeholder="Apellido">
+            <input type="email" name="correo" class="entrada correo" placeholder="Correo Electrónico">
             <textarea name="mensaje" class="entrada mensaje" placeholder="Mensaje"></textarea>
-            <button type="submit" id="btn-formcontacto">Enviar Mensaje</button>
+            <button type="submit" id="btn-formcontacto">Envíar Mensaje</button>
         </form>
         <article id="texto-contacto">
             <h3 style="text-align: center;">!CONTACTANOS!</h3>
@@ -78,20 +65,24 @@
         </article>
     </section>
     <footer id="pie-pagina">
-        <div class="seccion-footer">
+        <article class="seccion-footer">
             <h3>¿Sabes quién está detras de tus pinturas?</h3>
             <p>¡Conócenos! Aquí encontraras calidad,<br> amor por el detalle y colores que inspiran.</p>
-        </div>
-        <div class="seccion-footer">
-            <h3>¡¡Conoces nuestros servicios!!</h3>
+        </article>
+        <article class="seccion-footer">
+            <h3>¡Conoces nuestros servicios!</h3>
             <p>En nuestra tienda, no solo vendemos pintura...<br>¡Te ayudamos a elegir la pintura perfecta</p>
-        </div>
-        <div class="seccion-footer">
-            <h3>¡¡CONTACTANOS!!</h3>
+        </article>
+        <article class="seccion-footer">
+            <h3>¡CONTACTANOS!</h3>
             <p>0416-4537225<br>0414-5026386</p>
             <p><a href="mailto:Todocolorlara@gmail.com">todocolorlara@gmail.com</a></p>
             <p>Carrera 19, entre calle 60 y 61</p>
-        </div>
+        </article>
+        <article class="parte-inferior">
+            <p>&copy; 2025 Todo Color Lara. Todos los derechos reservados.</p>
+        </article>
     </footer>
+    <script src="/public/navbar.js"></script>
 </body>
 </html>
