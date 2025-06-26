@@ -45,51 +45,43 @@
 
 
         /* ESTA FUNCION ES PARA VERFICAR SI UN USUARIO EXISTE*/
-        public function Existe($NombreTabla ,array $Datos){
-            
-            try{
-                $columnasArreglo = array_keys($Datos);
-                $columnas = implode(", ", $columnasArreglo);
-
-                $condicion = [];
-
-                for($i = 0; $i < count($Datos); $i++){
-                    $condicion[$i] = $columnasArreglo[$i] . " = ?";
+        public function Existe($NombreTabla, array $Datos) {
+            try {
+                if (count($Datos) !== 1) {
+                    return ["error" => "Se debe proporcionar exactamente un solo campo y valor", "exito" => false];
                 }
 
-                $cuando = implode(" AND ", $condicion);
+                $columna = array_keys($Datos)[0];
+                $valor = array_values($Datos)[0];
 
-                $consulta = "SELECT $columnas FROM $NombreTabla WHERE $cuando";
+                // Construir consulta para una sola condición
+                $consulta = "SELECT * FROM $NombreTabla WHERE $columna = ?";
 
                 $stmt = $this->conexionDB->prepare($consulta);
 
-                if(!$stmt){
+                if (!$stmt) {
                     return ["error" => "No se pudo preparar la consulta", "exito" => false];
                 }
 
+                // Detectar tipo de dato
                 $tipoDato = $this->DetectarTiposDatos($Datos);
-                $contenido = array_values($Datos);
+                $stmt->bind_param($tipoDato, $valor);
 
-                $stmt->bind_param($tipoDato, ...$contenido);
-
-                if(!$stmt->execute()){
+                if (!$stmt->execute()) {
                     return ["error" => "Error al ejecutar la consulta", "exito" => false];
-                
-                } else {
-                    $resultado = $stmt->get_result();
-                    return $resultado->fetch_assoc();
+                }
 
-                } 
-
+                $resultado = $stmt->get_result();
                 $stmt->close();
-                return $resultado;
 
-            } catch(Exception $e) {
+                return $resultado->fetch_assoc();
+
+            } catch (Exception $e) {
                 return ["error" => "SE HA PRODUCIDO UN ERROR EN UN COMANDO. " . $e->getMessage(), "exito" => false];
 
             }
-            
         }
+
 
 
         /* ESTA FUNCION ES PARA DETECTAR LOS TIPOS DE DATOS DEL DICCIONARIO */
