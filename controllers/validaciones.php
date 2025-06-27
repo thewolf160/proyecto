@@ -2,12 +2,20 @@
     /* LAS FUNCIONES DEVUELVEN TRUE SI EL CONTENIDO DEL DATO ES INVALIDO */
     function vacio(array $datos) : bool{
 
-        foreach($datos as $dato){
-            if(empty($dato)){
+        foreach($datos as $clave => $valor){
+            if($valor === ""){
                 return true;
             }
         }
        return false;
+    }
+
+    function validarNombre(array $datos) : bool {
+        if(preg_match('/\d/', $datos["nombre"])){
+            return true;
+        } 
+
+        return false;
     }
 
     function correoFormato(array $datos) : bool{
@@ -22,11 +30,11 @@
 
         if(strpos($datos["identificacion"], '-') !== false) {
             $partes = explode('-', $datos["identificacion"]);
-            // Validar letra del RIF
+            
             if(!in_array($partes[0], ['V', 'E', 'J', 'G', 'P'])) {
                 return true;
             }
-            // Validar números del RIF
+            
             if(!ctype_digit($partes[1]) || !ctype_digit($partes[2])) {
                 return true;
             }
@@ -51,4 +59,6 @@
     function ExisteUsuario($objeto) : bool{
         return $objeto !== null ? true : false;
     }
+
+
 ?>

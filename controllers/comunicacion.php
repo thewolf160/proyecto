@@ -10,14 +10,21 @@
     switch($seccion){
 
         case "Registrarse":
-            $resultado = Registro();
+            $resultado = RegistroUsuario();
             echo $resultado["error"];
             
         break;
 
+        case "inicio_sesion": 
+            $resultado = inicioSesion();
+            echo $resultado["error"];
+        
+        break;
+
     }
 
-    function Registro() : array{
+    /* FUNCION PARA REGISTRAR USUARIO */
+    function RegistroUsuario() : array{
         global $operaciones;
 
         /* RECIBIMOS LOS DATOS DEL FORMULARIO */
@@ -25,9 +32,7 @@
         $identificacion = htmlspecialchars($_POST["IIdentificacion"] ?? null);
         $direccion = htmlspecialchars($_POST["IDireccion"] ?? null);
         $correo = htmlspecialchars($_POST["ICorreo"] ?? null);
-        $contraseña = htmlspecialchars($_POST["IContraseña"] ?? null);
-
-        $contraseña = password_hash($contraseña, PASSWORD_BCRYPT);
+        $contraseña = $_POST["IContraseña"] ?? null;
 
         $datos = [
             "nombre" => $nombre, 
@@ -43,16 +48,19 @@
         ];
             
         if (vacio($datos)){
-            return $mensaje = ["error" => "Datos incompletos", "exito" => false];
+            return ["error" => "Datos incompletos", "exito" => false];
             
         } else if(correoFormato($datos)){
-            return $mensaje = ["error" => "Formato de correo incorrecto", "exito" => false];
+            return ["error" => "Formato de correo incorrecto", "exito" => false];
+
+        } else if(validarNombre($datos)){
+            return ["error" => "Nombre no valido", "exito" => false];
 
         } else if(identificacionFormato($datos)){
-            return $mensaje = ["error" => "Formato de identificacion incorrecto", "exito" => false];
+            return ["error" => "Formato de identificacion incorrecto", "exito" => false];
         
         } else if(tamañoidentificacion($datos)){
-            return $mensaje = ["error" => "Tamaño de identificacion incorrecto", "exito" => false];
+            return ["error" => "Tamaño de identificacion incorrecto", "exito" => false];
 
         }
 
@@ -62,9 +70,50 @@
             }
         }
 
+        $datos["clave"] = password_hash($datos["clave"], PASSWORD_BCRYPT);
 
-        $mensaje = $operaciones->Agregar("usuarios", $datos);
+        $resultado = $operaciones->Agregar("usuarios", $datos);
 
-        return $mensaje;
+        return $resultado;
+    }
+
+
+    /* FUNCION PARA INICIAR SESIÓN */
+    function inicioSesion() : array{
+        global $operaciones;
+
+        $correo = htmlspecialchars($_POST["ICorreo"] ?? null);
+        $contraseña = $_POST["IContraseña"] ?? null;
+
+        $datos = [
+            "correo" => $correo, 
+            "clave" => $contraseña
+        ];
+
+        if (vacio($datos)){
+            return ["error" => "Datos incompletos", "exito" => false];
+            
+        } else if(correoFormato($datos)){
+            return ["error" => "Formato de correo incorrecto", "exito" => false];
+        }
+
+        unset($datos["clave"]);
+        $resultado = $operaciones->Existe("usuarios", $datos);
+
+        $datos["clave"] = $contraseña;
+
+        if($resultado === null){
+            return ["error" => "Contraseña incorrecta", "exito" => false];
+        
+        } else {
+            if(password_verify($datos["clave"], $resultado["clave"])){
+                return $resultado;
+            
+            } else {
+                return ["error" => "Contraseña incorrecta", "exito" => false];
+            }
+        }
+
+        return ["error" => "A ocurrido un error al iniciar sesión", "exito" => false];
     }
 ?>
