@@ -59,6 +59,4 @@
     function ExisteUsuario($objeto) : bool{
         return $objeto !== null ? true : false;
     }
-
-
 ?>
