@@ -46,14 +46,29 @@
         </div>
     </dialog>
     <dialog id="modulo-pagomovil">
-        <h3>Datos del Pago Móvil</h3>
-        <button type="button" onclick="cerrarModalPagomovil()">Cerrar</button>
+        <div id="contenido-pagomovil">
+            <article>
+                <h3>Datos del Pago Móvil</h3>
+                <p>CI-31161696</p>
+                <p>0416-4537225</p>
+                <p>0102-Venezuela</p>
+            </article>
+            <form action="" id="formulario-pago">
+                <input type="text" placeholder="Número de Referencia">
+            </form>
+            <div id="btns-pagomovil">
+                <button type="submit" form="formulario-pago">Enviar</button>
+                <button type="button" onclick="cerrarModalPagomovil()">Cerrar</button>
+            </div>
+        </div>
     </dialog>
-
+    <dialog id="modulo-otros">
+    <h3>Datos del otro método de pago</h3>
+    <button type="button" onclick="cerrarModalOtros()">Cerrar</button>
+</dialog>
     <script src="../public/scripts/navbar.js"></script>
     <script src="../public/scripts/catalago.js"></script>
     <script src="../public/scripts/modalPagar.js"></script>
     <script src="../public/scripts/checkbox.js"></script>
-    <script src="../public/scripts/modalPagomovil.js"></script>
 </body>
 </html>

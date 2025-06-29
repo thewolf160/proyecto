@@ -230,14 +230,88 @@ button{
 }
 
 #modulo-pagomovil{
-     position: fixed;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    height: 80%;
-    width: 30%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 40%;
+    height: 60%;
+    padding: 0;
 }
+
+
+#contenido-pagomovil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    height: 100%;
+    width: 100%;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+#modulo-pagomovil article {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+    width: 100%;
+}
+
+#modulo-pagomovil article h3 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+#formulario-pago {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#formulario-pago input {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+#btns-pagomovil {
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+#btns-pagomovil button {
+    width: 100px;
+    min-width: 80px;
+    height: 38px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: none;
+    background: #2ba3ec;
+    color: white;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+#btns-pagomovil button:hover {
+    background: #2392d1;
+}
+
 
 
 
