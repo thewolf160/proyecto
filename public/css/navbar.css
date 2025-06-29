@@ -93,7 +93,7 @@ nav a{
 
 .btn.crear {
     background-color: transparent;
-    border: 1px solid white;
+    border: 2px solid white;
     color: white;
     box-shadow: 0 6px 12px rgba(0, 0,0, 0.2);
 }
@@ -101,5 +101,60 @@ nav a{
 .btn.crear:hover {
     background-color: #f0f0f0;
     color: black;   
+}
+
+#usuarioBoton img{
+    width: 40px;
+    height: 40px;
+}
+
+#usuario{
+    position: relative;
+    display: flex;
+    
+}
+
+.icono-usuario{
+    background-color: #0b5fb0;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.menu-usuario{
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 8px 0;
+    border-radius: 5px;
+    
+}
+
+.menu-usuario a, .menu-usuario button{
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu-usuario a:hover, .menu-usuario button:hover{
+    background-color: #f0f0f0;
+}
+
+.hidden{
+    display: none;
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/carrito.css">
+    <link rel="stylesheet" href="../public/css/carrito.css">
     <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <title>Carrito</title>
@@ -11,11 +11,49 @@
 <body>
     <div id="navbar"></div>
     <main>
-        <section id="items-carro" class="items-carro">
+        <section id="items-carro" class="items-carro"></section>
+        <section id="pedido">
+            <div id="info-pago">
+            <h3>Total a pagar:</h3>
+            <span id="total">Bs</span>
+            </div>
+            <button id="pagar" onclick="abrirModalPagar()">Ir a pagar</button>
         </section>
     </main>
+    <dialog id="seccion-pagar">
+        <div id="contenido-pagar">
+            <h3>Seleccione el método de pago</h3>
+            <div class="metodo-pago">
+                    <input type="checkbox" value="Pago movil" id="pago-movil" class="check" >
+                    <label for="pago-movil">Pago Móvil</label>
+            </div>
+            <div class="metodo-pago">
+                <input type="checkbox" value="Punto de Venta" id="punto-venta" class="check">
+                <label for="punto-venta">Punto de Venta</label>
+            </div>
+            <div class="metodo-pago" >
+                <input type="checkbox" value="Efectivo" id="efectivo" class="check">
+                <label for="efectivo">Efectivo</label>
+            </div>
+            <div class="metodo-pago">
+                <input type="checkbox" value="Credito" id="credito" class="check"> 
+                <label for="credito">Credito</label>
+            </div>
+            <div id="botones-pago">
+                <button>Aceptar</button>
+                <button type="button" onclick="cerrarModalPagar()">Cancelar</button>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="modulo-pagomovil">
+        <h3>Datos del Pago Móvil</h3>
+        <button type="button" onclick="cerrarModalPagomovil()">Cerrar</button>
+    </dialog>
 
-    <script src="../public/navbar.js"></script>
-    <script src="../public/catalago.js"></script>
+    <script src="../public/scripts/navbar.js"></script>
+    <script src="../public/scripts/catalago.js"></script>
+    <script src="../public/scripts/modalPagar.js"></script>
+    <script src="../public/scripts/checkbox.js"></script>
+    <script src="../public/scripts/modalPagomovil.js"></script>
 </body>
 </html>
