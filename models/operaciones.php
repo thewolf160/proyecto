@@ -218,5 +218,10 @@
 
             return $tipos;
         }
+        
+        public function obtenerUltimoId() {
+            return $this->conexionDB->insert_id;
+        }
+
     }
 ?>
