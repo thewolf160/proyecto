@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    min-height: 100vh;
+}
+
+aside{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 160px;      /* Cambia a 100px como pediste */
+    height: 100%;
+    background-color: aqua;
+    z-index: 10;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+main{
+    grid-column: 2/3;
+}
+
+
