@@ -63,9 +63,17 @@
         </div>
     </dialog>
     <dialog id="modulo-otros">
-    <h3>Datos del otro método de pago</h3>
-    <button type="button" onclick="cerrarModalOtros()">Cerrar</button>
-</dialog>
+        <div id="contenido-otros">
+            <article>
+                <h3>Gracias por su compra</h3>
+                <p>Usted tiene 10 días hábiles para ir a retirar su pedido, de no asistir en el tiempo establecido su compra será anulada.</p>
+            </article>
+            <div id="btns-otros">
+                <button type="submit">Aceptar</button>
+                <button type="button" onclick="cerrarModalOtros()">Cancelar</button>
+            </div>
+        </div>
+    </dialog>
     <script src="../public/scripts/navbar.js"></script>
     <script src="../public/scripts/catalago.js"></script>
     <script src="../public/scripts/modalPagar.js"></script>
