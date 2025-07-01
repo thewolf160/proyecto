@@ -1,50 +1,75 @@
 <?php
+    session_start();
+
     require_once __DIR__ . '/../../validators/validaciones.php';
     require_once __DIR__ . '/../../models/models_user/modelo_usuario.php';
 
-    /* RECIBIMOS LA SECCION DEL FORMULARIO */
     $seccion = htmlspecialchars($_POST["seccion"] ?? null);
-    $modelo = new ModeloUsuario();
-    $controlador = new Controlador_Usuario("", "", "", "", "");
+    $modeloUsuario = new ModeloUsuario();
+    $controlador = new Usuario_Controlador();
+
+    $cargar = $modeloUsuario->M_UsuarioObtenerTodos();
+
+    foreach ($cargar as $fila) {
+        print_r($fila); echo "<br><br>";// Muestra cada fila como array asociativo
+    }
 
     switch ($seccion) {
-
         case "Registrarse":
             $resultado = $controlador->Agregar();
-            echo $resultado["error"];
-
+            unset($_SESSION["resultado"]);
+            $_SESSION["resultado"] = $resultado;
+            header("location: ./../../views/registro.php");
+            exit();
         break;
 
         case "inicio_sesion":
             $resultado = $controlador->inicioSesion();
-            if(isset($resultado["error"])){
-                echo $resultado["error"];
-
-            } else {
-                echo "Bienvenido " . $resultado["nombre"];
+            
+            if($resultado === null || is_string($resultado)){
+                unset($_SESSION["resultado"]);
+                $_SESSION["resultado"] = $resultado;
+                header("location: ./../../views/inicio_sesion.php");
+                exit();
             }
 
+            if ($resultado["nombre"] === "root"){
+                unset($_SESSION["usuario-root"]);
+                $_SESSION["usuario-root"] = $resultado;
+                header("location: ./../../views/inicio.php");
+                exit();
+            } 
+
+            unset($_SESSION["usuario"]);
+            $_SESSION["usuario"] = $resultado;
+            header("location: ./../../views/inicio.php");
+            exit();
+        break;
+
+        case "CerrarSesion":
+            session_destroy();
+            header("location: ./../../views/inicio.php");
+            exit();
+        break;
+
+        case "ActualizarUsuario":
+            $resultado = $controlador->ActualizarUsuario($usuarioIniciado, $modificacion);
+
+            if(isset($resultado["exito"])){
+                $resultado["error"];
+                
+             } else {
+                $resultado;
+            } 
+           
         break;
     }
 
+    class Usuario_Controlador{
 
-    class Controlador_Usuario {
-        private $nombre;
-        private $identificacion;
-        private $direccion;
-        private $correo;
-        private $clave;
-
-        public function __construct($nombre, $identificacion, $direccion, $correo, $clave){
-            $this->nombre = $nombre;
-            $this->identificacion = $identificacion;
-            $this->direccion = $direccion;
-            $this->correo = $correo;
-            $this->clave = $clave;
-        }
-
+        /* ESTA FUNCION ES PARA AGREGAR UN USUARIO */
         public function Agregar(){
-            global $modelo;
+            global $modeloUsuario;
 
             $nombre = htmlspecialchars($_POST["INombre"] ?? null);
             $identificacion = htmlspecialchars($_POST["IIdentificacion"] ?? null);
@@ -60,32 +85,31 @@
                 "clave" => $contraseña
             ];
 
-            if (vacio($datos)) {
-                return ["error" => "Datos incompletos", "exito" => false];
+            if (DatosVacios($datos)) {
+                return "Datos incompletos.";
 
-            } else if(validarNombre($datos)){
-                return ["error" => "Nombre no valido", "exito" => false];
+            } else if(NombreInvalido($nombre)){
+                return "Nombre invalido.";
 
-            }else if (correoFormato($datos)) {
-                return ["error" => "Formato de correo incorrecto", "exito" => false];
+            }else if (CorreoFormatoInvalido($datos)) {
+                return "Formato de correo incorrecto.";
 
-            } else if (validarNombre($datos)) {
-                return ["error" => "Nombre no valido", "exito" => false];
+            } else if (identificacionInvalido($datos)) {
+                return "Formato de identificacion incorrecto,";
 
-            } else if (identificacionFormato($datos)) {
-                return ["error" => "Formato de identificacion incorrecto", "exito" => false];
-
-            } else if (tamañoidentificacion($datos)) {
-                return ["error" => "Tamaño de identificacion incorrecto", "exito" => false];
+            } else if (TamañoIdentificacionInvalido($datos)) {
+                return "Tamaño de identificacion incorrecto.";
             }
 
             $datos["clave"] = password_hash($datos["clave"], PASSWORD_BCRYPT);
 
-            return $modelo->ModeloAgregar($datos);
+            return $modeloUsuario->M_UsuarioAgregar($datos);
         }
 
-        public function inicioSesion(): array{
-            global $modelo;
+
+        /* ESTA FUNCION ES PARA INICIAR SESIÓN */
+        public function inicioSesion(){
+            global $modeloUsuario;
 
             $correo = htmlspecialchars($_POST["ICorreo"] ?? null);
             $contraseña = $_POST["IContraseña"] ?? null;
@@ -95,15 +119,61 @@
                 "clave" => $contraseña
             ];
 
-            if (vacio($datos)) {
-                return ["error" => "Contraseña incoreccta", "exito" => false];
-
-            } else if (correoFormato($datos)) {
-                return ["error" => "Formato de correo incorrecto", "exito" => false];
-                
+            if (DatosVacios($datos)) {
+                return "Contraseña incorrecta.";
+            } else if (CorreoFormatoInvalido($datos)) {
+                return "Contraseña incorrecta.";
             }
 
-            return $modelo->ModeloConsultar($datos);
+            return $modeloUsuario->M_UsuarioIniciarSesion($datos);
+        }
+
+
+        /* ESTA FUNCION ES PARA ACTUALIZAR UN USUARIO */
+        public function ActualizarUsuario($datosActuales, $datosNuevos){
+            global $modeloUsuario;
+
+            if (DatosVacios($datosNuevos)) {
+                return "Datos incompletos.";
+
+            } else if(NombreInvalido($datosNuevos["nombre"])){
+                return "Nombre no valido.";
+
+            }else if (CorreoFormatoInvalido($datosNuevos)) {
+                return "Formato de correo incorrecto.";
+
+            } else if (IdentificacionInvalido($datosNuevos)) {
+                return "Formato de identificacion incorrecto.";
+
+            } else if (TamañoIdentificacionInvalido($datosNuevos)) {
+                return "Tamaño de identificacion incorrecto.";
+            } 
+
+            $id = $datosActuales["id"];
+            unset($datosActuales["id"]);
+            unset($datosActuales["clave"]);
+
+            $datosNuevos = ExtraerIguales($datosActuales, $datosNuevos);
+            $datosNuevos["id"] = $id;
+
+            return $modeloUsuario->M_UsuarioActualizar($datosNuevos);
+        }
+
+        public function EliminarUsuario(){
+            global $modeloUsuario;
+            $id = htmlspecialchars($_POST["id"] ?? null);
+
+            $datos = [
+                "id" => $id,
+                "activo" => "0"
+            ];
+
+            return $modeloUsuario->M_UsuarioEliminar($datos);
+        }
+
+        public function ObtenerTodos(){
+            global $modeloUsuario;
+            return $modeloUsuario->M_UsuarioObtenerTodos();
         }
     }
 ?>

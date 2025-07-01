@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2025 a las 04:03:37
+-- Tiempo de generación: 28-06-2025 a las 12:58:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -104,13 +104,25 @@ CREATE TABLE `items_carrito` (
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
+  `codigo` varchar(20) DEFAULT NULL,
   `nombre_producto` varchar(100) NOT NULL,
+  `cantidad_producto` int(11) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `precio` decimal(10,2) NOT NULL,
   `categoria` varchar(50) DEFAULT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `activo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `codigo`, `nombre_producto`, `cantidad_producto`, `descripcion`, `precio`, `categoria`, `fecha_creacion`, `activo`) VALUES
+(1, 'PNA265', 'Pintura Amarilla', 30, 'Pintura mamalona', 389.00, 'Madera', '2025-06-28 08:41:00', 0),
+(2, 'PNB265', 'Pintura Negra Blanqueada', 10, 'Pintura mamalonisima', 890.00, 'Arquitectonica', '2025-06-28 08:48:10', 0),
+(3, 'PBA865', 'Pintura Blanca', 9, 'Pintura good', 234.00, 'Industrial', '2025-06-28 09:42:14', 1),
+(4, 'PBL865', 'Pintura Boreal', 3, 'Pintura bonita', 100.00, 'Madera', '2025-06-28 09:45:41', 1);
 
 -- --------------------------------------------------------
 
@@ -134,8 +146,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `identificacion`, `direccion`, `correo`, `clave`, `fecha_registro`, `activo`) VALUES
-(1, 'JESUS CORTEZ', '32137510', 'BOBARE, LARA VENEZUELA', 'jesuscortez290306@gmail.com', '$2y$10$FICRAWP.j5OR/HXmOZ1NEuDkM950q286aAMqLoGPSelWNlIVY9NLm', '2025-06-27 21:48:56', 1),
-(3, 'Richard Cortez', '28712893', 'Barquisimeto, Lara Venezuela', 'd@gmail.com', '$2y$10$Mk2QzY9j92p/OjO8VLwNwuOlcuh94/1sTv.ZUhg5oSvEQmBcLDgvm', '2025-06-28 00:17:39', 1);
+(1, 'JESUS', '32137510', 'BOBARE, VENEZUELA', 'jesuscortez290306@gmail.com', '$2y$10$W.ygujWPqDApw727kVdlPO5Q5Ldfpcm96LCaEkRaDKR4q7CPuN1/y', '2025-06-28 06:07:05', 1),
+(2, 'Richard', '28712893', 'Lara, Barquisimeto', 'richardcortez@gmail.com', '$2y$10$e/Nbs1NZ3WmZ.uGMAT6lTO6aY3HuBNUw6DZdnZbLHN.ITMH/Fe0W6', '2025-06-28 06:22:47', 1);
 
 --
 -- Índices para tablas volcadas
@@ -182,14 +194,15 @@ ALTER TABLE `items_carrito`
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo` (`codigo`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cedula` (`identificacion`);
+  ADD UNIQUE KEY `identificacion` (`identificacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -229,13 +242,13 @@ ALTER TABLE `items_carrito`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
