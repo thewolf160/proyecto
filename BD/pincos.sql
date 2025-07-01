@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2025 a las 12:58:22
+-- Tiempo de generación: 01-07-2025 a las 03:26:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `carrito`
---
-
-CREATE TABLE `carrito` (
-  `id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `fecha_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `compras`
 --
 
@@ -45,7 +32,7 @@ CREATE TABLE `compras` (
   `usuario_id` int(11) NOT NULL,
   `total` decimal(12,2) NOT NULL,
   `fecha_compra` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('pendiente','completada','cancelada') DEFAULT 'pendiente',
+  `estado` enum('pendiente','cancela','completada','encarrito') DEFAULT NULL,
   `metodo_pago` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -76,25 +63,19 @@ CREATE TABLE `inventario` (
   `stock` int(11) NOT NULL DEFAULT 0,
   `stock_minimo` int(11) DEFAULT 10,
   `stock_maximo` int(11) DEFAULT 100,
-  `ubicacion` varchar(50) DEFAULT NULL,
   `fecha_ultima_entrada` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_ultima_salida` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `items_carrito`
+-- Volcado de datos para la tabla `inventario`
 --
 
-CREATE TABLE `items_carrito` (
-  `id` int(11) NOT NULL,
-  `carrito_id` int(11) NOT NULL,
-  `producto_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL DEFAULT 1,
-  `precio_unitario` decimal(10,2) NOT NULL,
-  `agregado_en` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `inventario` (`id`, `producto_id`, `stock`, `stock_minimo`, `stock_maximo`, `fecha_ultima_entrada`, `fecha_ultima_salida`) VALUES
+(1, 12, 20, 0, 30, '2025-06-30 09:31:40', NULL),
+(2, 13, 0, 0, 0, '2025-06-29 06:45:18', NULL),
+(3, 14, 10, 2, 10, '2025-06-29 21:26:15', NULL),
+(4, 15, 2, 0, 10, '2025-06-29 22:46:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -106,7 +87,6 @@ CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `codigo` varchar(20) DEFAULT NULL,
   `nombre_producto` varchar(100) NOT NULL,
-  `cantidad_producto` int(11) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `precio` decimal(10,2) NOT NULL,
   `categoria` varchar(50) DEFAULT NULL,
@@ -118,11 +98,11 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nombre_producto`, `cantidad_producto`, `descripcion`, `precio`, `categoria`, `fecha_creacion`, `activo`) VALUES
-(1, 'PNA265', 'Pintura Amarilla', 30, 'Pintura mamalona', 389.00, 'Madera', '2025-06-28 08:41:00', 0),
-(2, 'PNB265', 'Pintura Negra Blanqueada', 10, 'Pintura mamalonisima', 890.00, 'Arquitectonica', '2025-06-28 08:48:10', 0),
-(3, 'PBA865', 'Pintura Blanca', 9, 'Pintura good', 234.00, 'Industrial', '2025-06-28 09:42:14', 1),
-(4, 'PBL865', 'Pintura Boreal', 3, 'Pintura bonita', 100.00, 'Madera', '2025-06-28 09:45:41', 1);
+INSERT INTO `productos` (`id`, `codigo`, `nombre_producto`, `descripcion`, `precio`, `categoria`, `fecha_creacion`, `activo`) VALUES
+(12, 'CRI23C', 'Pintura Gris', 'Pintura de color gris', 1999.99, 'Madera', '2025-06-29 02:17:33', 0),
+(13, 'PMN009', 'Pintura Marron ', 'Pintura marron', 290.00, 'Industrial', '2025-06-29 06:45:18', 0),
+(14, 'PRD2025X', 'Café Supremo Lara', 'Un café tostado artesanal de altura con aroma envolvente y sabor intenso.', 14.00, 'Madera', '2025-06-29 21:26:15', 1),
+(15, 'PRJ2006', 'Pintura Roja Sangre ', 'Pintura Roja, sangre como el agua. Muy resaltante.', 300.00, 'Domestica', '2025-06-29 22:46:24', 1);
 
 -- --------------------------------------------------------
 
@@ -146,19 +126,16 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `identificacion`, `direccion`, `correo`, `clave`, `fecha_registro`, `activo`) VALUES
-(1, 'JESUS', '32137510', 'BOBARE, VENEZUELA', 'jesuscortez290306@gmail.com', '$2y$10$W.ygujWPqDApw727kVdlPO5Q5Ldfpcm96LCaEkRaDKR4q7CPuN1/y', '2025-06-28 06:07:05', 1),
-(2, 'Richard', '28712893', 'Lara, Barquisimeto', 'richardcortez@gmail.com', '$2y$10$e/Nbs1NZ3WmZ.uGMAT6lTO6aY3HuBNUw6DZdnZbLHN.ITMH/Fe0W6', '2025-06-28 06:22:47', 1);
+(1, 'root', '11222333', 'VENEZUELA, BARQUISIMETO', 'root@gmail.com', '$2y$10$W.ygujWPqDApw727kVdlPO5Q5Ldfpcm96LCaEkRaDKR4q7CPuN1/y', '2025-06-28 06:07:05', 1),
+(2, 'Richard', '28712893', 'Lara, Barquisimeto', 'richardcortez@gmail.com', '$2y$10$e/Nbs1NZ3WmZ.uGMAT6lTO6aY3HuBNUw6DZdnZbLHN.ITMH/Fe0W6', '2025-06-28 06:22:47', 1),
+(4, 'JESUS CORTEZ', '32137510', 'BOBARE', 'jesuscortez290306@gmal.com', '$2y$10$0T4kL3xjHQKGOjtw7C3Gj.PMXodQX7F44LHkixnhyvVzJIMlMfX0W', '2025-06-29 05:58:35', 1),
+(5, 'YONATHAN NIELES', '31161151', 'CARORA', 'yonathannieles@hotmail.com', '$2y$10$0JE4SdgKqR11YTXJjFXw/OFizxLKOvOnXNHmUS7drv6nhJwhTyjR.', '2025-06-29 06:04:16', 1),
+(6, 'MICHI', '11999888', 'BOBARE ', 'michi@gmail.com', '$2y$10$.hHGBhGTI8fhXVRCMUBzOuNWaY84I1GyVzfBmfDM5NVjgwEoHOFP2', '2025-06-29 09:33:57', 0),
+(8, 'Juan Perdomo', '28196676', 'OBELISCO, BARQUISIMETO, LARA', 'juanperdomo@gmail.com', 'clave', '2025-06-30 00:45:35', 1);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `compras`
@@ -183,14 +160,6 @@ ALTER TABLE `inventario`
   ADD KEY `producto_id` (`producto_id`);
 
 --
--- Indices de la tabla `items_carrito`
---
-ALTER TABLE `items_carrito`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `carrito_id` (`carrito_id`,`producto_id`),
-  ADD KEY `producto_id` (`producto_id`);
-
---
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -209,12 +178,6 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `carrito`
---
-ALTER TABLE `carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
@@ -230,35 +193,23 @@ ALTER TABLE `detalles_compras`
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `items_carrito`
---
-ALTER TABLE `items_carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `compras`
@@ -278,13 +229,6 @@ ALTER TABLE `detalles_compras`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
-
---
--- Filtros para la tabla `items_carrito`
---
-ALTER TABLE `items_carrito`
-  ADD CONSTRAINT `items_carrito_ibfk_1` FOREIGN KEY (`carrito_id`) REFERENCES `carrito` (`id`),
-  ADD CONSTRAINT `items_carrito_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
