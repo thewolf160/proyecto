@@ -224,7 +224,6 @@ p{
 #formulario-contacto input,
 #formulario-contacto textarea {
     background-color: white;
-    padding: 8px;
     resize: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0 5);
     width: 100%;
