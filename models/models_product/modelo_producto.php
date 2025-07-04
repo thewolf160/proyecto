@@ -53,6 +53,7 @@
             return $operaciones->ObtenerTodos($consulta);
         }
 
+
         /* ESTA FUNCION ES PARA MODIFICAR UN PRODUCTO */
         public function ProductoModificar($datosProducto, $datosInventario){
             global $operaciones;
@@ -69,16 +70,43 @@
             }
             $resultado = $operaciones->Modificar("productos", $datosProducto);
 
-            !$resultado || $resultado === null ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario);
+            empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario);
         }
 
+
+        /* ESTA FUNCION ES PARA BUSCAR PRODUCTOS POR NOMBRE */
+        public function BuscarNombresRoot($busqueda){
+            global $operaciones;
+            $consulta = "SELECT p.*, i.stock 
+             FROM productos p
+             LEFT JOIN inventario i ON p.id = i.producto_id
+             WHERE p.activo = 1 
+             AND (p.nombre_producto LIKE '%" . $busqueda . "%' 
+                  OR p.codigo LIKE '%" . $busqueda . "%')";
+            return $operaciones->ObtenerTodos($consulta);
+        }
+
+
+        public function BuscarNombresUsuario($busqueda){
+            global $operaciones;
+           $consulta = "SELECT p.*, i.stock 
+             FROM productos p
+             LEFT JOIN inventario i ON p.id = i.producto_id
+             WHERE p.activo = 1 
+             AND p.nombre_producto LIKE '%" . $busqueda . "%'";
+            return $operaciones->ObtenerTodos($consulta);
+        }
+
+
+
+        /* ESTA FUNCION ES PARA ELIMINAR UN PRODUCTO */
         public function M_ProductoEliminnar($datos){
             global $operaciones;
             global $modeloInventario;
         
             $resultado = $operaciones->Modificar("productos", $datos);
 
-            if($resultado === null || !$resultado){
+            if(empty($resultado)){
                 return "ERROR: No se pudo eliminar el producto.";
 
             }  else {

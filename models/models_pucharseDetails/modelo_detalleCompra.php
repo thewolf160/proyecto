@@ -1,0 +1,93 @@
+<?php
+    require_once __DIR__ . '/../operaciones.php';
+    require_once __DIR__ . '/../models_inventory/modelo_inventario.php';
+
+    $operaciones = new Operaciones("localhost", "root", "", "pincos");
+    $modelo_inventario = new ModeloInventario();
+
+    class ModeloDetallesCompra{
+        public function __construct(){}
+    
+        public function AgregarDetallesCompra($datos){
+            global $operaciones;
+            global $modelo_inventario;
+            $mensaje = "";
+
+            foreach($datos as $Detalle){
+                $resultado = $operaciones->Agregar("detalles_compras", $Detalle);
+
+                if($resultado === true){
+                    $mensaje = $modelo_inventario->M_InventarioCompra($Detalle);
+                
+                } else {
+                    return "Error al agregar detalles de compra.";
+                }
+            }
+            return $mensaje;
+        }
+
+        public function M_NostrarCompras(){
+            global $operaciones;
+            global $modelo_inventario;
+
+            $consulta = "SELECT 
+                c.id AS compra_id,
+                c.fecha_compra,
+                c.total AS total_compra,
+                c.estado,
+                c.metodo_pago,
+                
+                u.id AS usuario_id,
+                u.nombre AS nombre_usuario,
+                u.identificacion,
+                u.direccion AS direccion_usuario,
+                u.correo,
+                
+                dc.id AS detalle_id,
+                dc.cantidad,
+                dc.precio_unitario,
+                dc.subtotal AS subtotal_detalle,
+                
+                p.id AS producto_id,
+                p.codigo AS codigo_producto,
+                p.nombre_producto,
+                p.descripcion AS descripcion_producto,
+                p.precio AS precio_actual_producto,
+                p.categoria
+            FROM 
+                compras c
+            INNER JOIN 
+                detalles_compras dc ON c.id = dc.compra_id
+            INNER JOIN 
+                usuarios u ON c.usuario_id = u.id
+            INNER JOIN 
+                productos p ON dc.producto_id = p.id
+            ORDER BY 
+                c.fecha_compra DESC, c.id, dc.id;";
+
+            $resultado = $operaciones->ObtenerTodos($consulta);
+
+            foreach($resultado as $unidad){
+                $fechaActual = new DateTime();
+                $fechaRegistro = new DateTime($unidad["fecha_compra"]);
+                $diferencia = $fechaActual->diff($fechaRegistro);
+
+                if($diferencia->days >= 10){
+                    $obj = $modelo_inventario->M_InventarioConsultar(["id" => $unidad["inventario_id"]]);
+
+                    $obj["stock"] = $obj["stock"] + $unidad["cantidad"];
+
+                    $modelo_inventario->M_InventarioModificar($obj);
+                    $operaciones->Eliminar("compras", ["id" => $unidad["compra_id"]]);
+                }
+            }
+            return $operaciones->ObtenerTodos($consulta);
+        }
+
+        public function ELiminarCompra($id){
+            global $operaciones;
+            return $operaciones->Eliminar("compras", ["id" => $id]);
+        }
+    }
+
+?>

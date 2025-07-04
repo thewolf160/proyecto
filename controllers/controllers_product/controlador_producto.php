@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     require_once __DIR__ . '/../../validators/validaciones.php';
     require_once __DIR__ . '/../../models/models_product/modelo_producto.php';
 
@@ -42,6 +41,20 @@
             //header("Location: ./../../views/catalogo.php"); Asi debe ir la ruta
             exit();
         break;
+
+        case "BusquedaNombres":
+            $resultado = $controlador->BuscarNombres();
+            
+            if(is_string($resultado)) {
+                echo $resultado;
+            } else {
+                foreach($resultado as $fila){
+                    echo $fila["nombre_producto"] . "<br>";
+                    echo $fila["stock"] . "<br>";
+
+                }
+            }
+        break;
     }
 
 
@@ -66,14 +79,11 @@
         }
 
 
-
-
         /* ESTA FUNCION ES PARA CARGAR LOS PRODUCTOS */ 
         public function CargarProductos($categoria){ // funciona
             global $modeloProducto;
             return $modeloProducto->ProductosConsultarTodos($categoria);
         }
-
 
 
         /* ESTA FUNCION ES PARA MODIFICAR UN PRODUCTO */
@@ -118,18 +128,23 @@
         }
 
 
+        public function BuscarNombres(){
+            global $modeloProducto;
+
+            $nombre = htmlspecialchars($_POST["IBusqueda"] ?? null);
+            $tipoUsuario = htmlspecialchars($_POST["tipoUsuario"] ?? null);
+
+            if(DatosVacios(["nombre_producto" => $nombre])) return "Datos incompletos.";
+
+            return $tipoUsuario !== "usuario-root" ? $modeloProducto->BuscarNombresUsuario($nombre) : $modeloProducto->BuscarNombresRoot($nombre);
+        }
 
 
         /* ESTA FUNCION ES PARA ELIMINAR UN PRODUCTO */
         public function EliminarProducto(){ // funciona
             global $modeloProducto;
-
             $id = htmlspecialchars($_POST["id"] ?? null);
-
-            $datos = [
-                "id" => $id,
-                "activo" => "0"
-            ];
+            $datos = ["id" => $id, "activo" => "0"];
 
             return $modeloProducto->M_ProductoEliminnar($datos);
         }
@@ -175,9 +190,7 @@
                     return "Valor Invalido. El stock no puede ser un números negativo.";
                 }
             }
-
             return ["datos" => $datos, "datosInventario" => $datosInventario];
         }
     }
-
 ?>
