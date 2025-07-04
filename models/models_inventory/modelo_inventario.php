@@ -21,16 +21,21 @@
 
 
         /* ESTA FUNCION ES PARA MODIFICAR UN INVENTARIO */
-        public function M_InventarioModificar($datos){
+        public function M_InventarioModificar($datos, $valor){
             global $operaciones;
 
             $inventario = $operaciones->Consultar("inventario", ["id" => $datos["id"]]);
 
             if($inventario !== null){
-                $datos["fecha_ultima_entrada"] = date('Y-m-d H:i:s');
-                $resultado = $operaciones->Modificar("inventario", $datos);
-                return empty($resultado) ? "ERROR: No se pudo modificar el inventario" : "Inventario modificado correctamente.";
-            
+                if($valor === "Agregar"){
+                    return $this->FechaEntrada($datos);
+                } else if($valor === "Venta") {
+                    return $this->FechaSalida($datos);
+                
+                } else {
+                    $resultado = $operaciones->Modificar("inventario", $datos);
+                    return empty($resultado) ? "ERROR: No se pudo modificar el inventario" : "Inventario modificado correctamente.";
+                }
             } else {
                 return "ERROR: No se pudo modificar el inventario. El stock no puede ser mayor al actual.";
             }
@@ -64,6 +69,26 @@
             $inventario["fecha_ultima_salida"] = date('Y-m-d H:i:s');
             $resultado = $operaciones->Modificar("inventario", $inventario);
 
+            return empty($resultado) ? "ERROR: No se pudo modificar el inventario" : "Inventario modificado correctamente.";
+        }
+
+
+        /* ESTA FUNCION ES PARA MODIFICAR LA FECHA DE ENTRADA */
+        public function FechaEntrada($datos){
+            global $operaciones;
+
+            $datos["fecha_ultima_entrada"] = date('Y-m-d H:i:s');
+            $resultado = $operaciones->Modificar("inventario", $datos);
+            return empty($resultado) ? "ERROR: No se pudo modificar el inventario" : "Inventario modificado correctamente.";
+        }
+
+
+        /* ESTA FUNCION ES PARA MODIFICAR LA FECHA DE SALIDA */
+        public function FechaSalida(){
+            global $operaciones;
+
+            $datos["fecha_ultima_salida"] = date('Y-m-d H:i:s');
+            $resultado = $operaciones->Modificar("inventario", $datos);
             return empty($resultado) ? "ERROR: No se pudo modificar el inventario" : "Inventario modificado correctamente.";
         }
     }

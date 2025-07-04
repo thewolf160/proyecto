@@ -55,6 +55,9 @@
                 }
             }
         break;
+
+        case "EliminarProducto":
+        break;
     }
 
 
@@ -107,8 +110,6 @@
             $InventarioActual = [
                 "id" => $datosViejos["id"],
                 "stock" => $datosViejos["stock"],
-                "stock_maximo" => $datosViejos["stock_maximo"],
-                "stock_minimo" => $datosViejos["stock_minimo"],
             ];
 
 
@@ -158,8 +159,7 @@
             $precio = htmlspecialchars($_POST["IPrecio"] ?? null);
             $categoria = htmlspecialchars($_POST["ICategoria"] ?? null);
             $stock = htmlspecialchars($_POST["IStock"] ?? null);
-            $stockMax = htmlspecialchars($_POST["IStockMax"] ?? null);
-            $stockMin = htmlspecialchars($_POST["IStockMin"] ?? null);
+    
 
             $datos = [
                 "nombre_producto" => $nombre,
@@ -177,19 +177,11 @@
                 return "Precio Invalido. No pueden ser números negativos.";
             } 
 
-            $datosInventario =[
-                "stock" => $stock,
-                "stock_maximo" => $stockMax,
-                "stock_minimo" => $stockMin
-            ];
+            $datosInventario =[ "stock" => $stock ];
 
             if (DatosVacios($datosInventario)) return "Faltan campos por completar.";
-
-            foreach($datosInventario as $clave => $valor){
-                if(NumeroInvalido($valor)){
-                    return "Valor Invalido. El stock no puede ser un números negativo.";
-                }
-            }
+            if(NumeroInvalido($datosInventario["stock"])) return "Valor Invalido. El stock no puede ser un números negativo.";
+            
             return ["datos" => $datos, "datosInventario" => $datosInventario];
         }
     }

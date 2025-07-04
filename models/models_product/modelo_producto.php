@@ -6,8 +6,8 @@
     $modeloInventario = new ModeloInventario();
 
     class ModeloProducto {
-
         public function __construct(){}
+
 
         /* ESTA FUNCION ES PARA AGREGAR UN PRODUCTO */
         public function M_ProductoAgregar($datos, $datosInventario){
@@ -20,7 +20,7 @@
             
             $resultado = $operaciones->Agregar("productos", $datos);
 
-            if($resultado === true){
+            if($resultado){
                 $Producto = $operaciones->Consultar("productos", ["codigo" => $datos["codigo"]]);
                 $datosInventario["producto_id"] = $Producto["id"];
                 return $modeloInventario->M_InventarioAgregar($datosInventario);  
@@ -70,7 +70,7 @@
             }
             $resultado = $operaciones->Modificar("productos", $datosProducto);
 
-            empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario);
+            return empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario);
         }
 
 
@@ -116,8 +116,6 @@
                     $modificacionInventario = [
                         "id" => $inventario["id"],
                         "stock" => "0",
-                        "stock_maximo" => "0",
-                        "stock_minimo" => "0"
                     ];
                     return $modeloInventario->M_InventarioEliminar($modificacionInventario);
                 }

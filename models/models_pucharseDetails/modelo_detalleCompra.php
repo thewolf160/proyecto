@@ -7,25 +7,26 @@
 
     class ModeloDetallesCompra{
         public function __construct(){}
-    
+
+        
+        /* ESTA FUNCION ES PARA AGREGAR DETALLES DE COMPRA */
         public function AgregarDetallesCompra($datos){
             global $operaciones;
             global $modelo_inventario;
-            $mensaje = "";
 
-            foreach($datos as $Detalle){
-                $resultado = $operaciones->Agregar("detalles_compras", $Detalle);
-
-                if($resultado === true){
-                    $mensaje = $modelo_inventario->M_InventarioCompra($Detalle);
+            foreach($datos as $Detalle) { 
+                $resultado = $operaciones->Agregar("detalles_compras", $Detalle); 
+                $inventario = $modelo_inventario->M_InventarioConsultar(["producto_id" => $Detalle["producto_id"]]);
                 
-                } else {
-                    return "Error al agregar detalles de compra.";
-                }
+                $inventario["stock"] = $inventario["stock"] - $Detalle["cantidad"];
+
+                $modelo_inventario->M_InventarioModificar($inventario, "");
             }
-            return $mensaje;
+            return $resultado;
         }
 
+
+        /* ESTA FUNCION ES PARA OBTENER TODOS LOS DETALLES DE COMPRA */
         public function M_NostrarCompras(){
             global $operaciones;
             global $modelo_inventario;
@@ -68,26 +69,36 @@
             $resultado = $operaciones->ObtenerTodos($consulta);
 
             foreach($resultado as $unidad){
-                $fechaActual = new DateTime();
-                $fechaRegistro = new DateTime($unidad["fecha_compra"]);
-                $diferencia = $fechaActual->diff($fechaRegistro);
+                if($unidad["estado"] === "pendiente"){
+                    $fechaActual = new DateTime();
+                    $fechaRegistro = new DateTime($unidad["fecha_compra"]);
+                    $diferencia = $fechaActual->diff($fechaRegistro);
 
-                if($diferencia->days >= 10){
-                    $obj = $modelo_inventario->M_InventarioConsultar(["id" => $unidad["inventario_id"]]);
+                    if($diferencia->days >= 10){
+                        $obj = $modelo_inventario->M_InventarioConsultar(["id" => $unidad["inventario_id"]]);
 
-                    $obj["stock"] = $obj["stock"] + $unidad["cantidad"];
+                        $obj["stock"] = $obj["stock"] + $unidad["cantidad"];
 
-                    $modelo_inventario->M_InventarioModificar($obj);
-                    $operaciones->Eliminar("compras", ["id" => $unidad["compra_id"]]);
+                        $modelo_inventario->M_InventarioModificar($obj, "");
+                        $operaciones->Eliminar("compras", ["id" => $unidad["compra_id"]]);
+                    }
                 }
             }
             return $operaciones->ObtenerTodos($consulta);
         }
 
+
+        /* ESTA FUNCION ES PARA ELIMINAR UN DETALLE DE COMPRA */
         public function ELiminarCompra($id){
             global $operaciones;
             return $operaciones->Eliminar("compras", ["id" => $id]);
         }
-    }
 
+
+        /* ESTA FUNCION ES PARA CONSULTAR UN DETALLE DE COMPRA */
+        public function M_ConsultarDetalles($parametro){
+            global $operaciones;
+            return $operaciones->Consultar("detalles_compras", $parametro);
+        }
+    }
 ?>

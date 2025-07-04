@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2025 a las 03:26:29
+-- Tiempo de generación: 03-07-2025 a las 22:22:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `compras` (
   `metodo_pago` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `usuario_id`, `total`, `fecha_compra`, `estado`, `metodo_pago`) VALUES
+(1, 2, 8050.00, '2025-07-03 07:40:04', 'pendiente', 'efectivo');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +57,14 @@ CREATE TABLE `detalles_compras` (
   `precio_unitario` decimal(10,2) NOT NULL,
   `subtotal` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalles_compras`
+--
+
+INSERT INTO `detalles_compras` (`id`, `compra_id`, `producto_id`, `cantidad`, `precio_unitario`, `subtotal`) VALUES
+(1, 1, 14, 3, 14.00, 42.00),
+(2, 1, 15, 1, 300.00, 300.00);
 
 -- --------------------------------------------------------
 
@@ -74,8 +89,8 @@ CREATE TABLE `inventario` (
 INSERT INTO `inventario` (`id`, `producto_id`, `stock`, `stock_minimo`, `stock_maximo`, `fecha_ultima_entrada`, `fecha_ultima_salida`) VALUES
 (1, 12, 20, 0, 30, '2025-06-30 09:31:40', NULL),
 (2, 13, 0, 0, 0, '2025-06-29 06:45:18', NULL),
-(3, 14, 10, 2, 10, '2025-06-29 21:26:15', NULL),
-(4, 15, 2, 0, 10, '2025-06-29 22:46:24', NULL);
+(3, 14, 4, 2, 10, '2025-07-03 06:23:21', '2025-07-03 07:40:04'),
+(4, 15, 2, 0, 10, '2025-06-29 22:46:24', '2025-07-03 07:40:04');
 
 -- --------------------------------------------------------
 
@@ -181,13 +196,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalles_compras`
 --
 ALTER TABLE `detalles_compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
