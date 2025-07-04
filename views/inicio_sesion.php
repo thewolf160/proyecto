@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <a id="retroceder" href="inicio.html"><img src="../public/imagenes/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
+    <a id="retroceder" href="inicio.php"><img src="../public/imagenes/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
 
     <div id="inicioSesionDiv">
         <h1>Inicia Sesión</h1>

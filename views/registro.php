@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <a href="inicio.html" id="retroceder"><img src="../public/imagenes/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
+    <a href="inicio.php" id="retroceder"><img src="../public/imagenes/Flechaatras1.png" alt="Flecha que te dirige al inicio"></a>
 
     <div id="LadoIzquierdo">
 

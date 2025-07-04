@@ -22,8 +22,8 @@ productos.forEach(producto => {
     item.innerHTML = `
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <div class="info">
-        <h3>${producto.nombre}</h3>
-        <p>Bs. ${producto.precio}</p>
+            <h3>${producto.nombre}</h3>
+            <p>Bs. ${producto.precio}</p>
         </div>
         <div class="cantidad">
         <button class="restar">-</button>
