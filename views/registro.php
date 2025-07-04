@@ -1,3 +1,5 @@
+<?php  session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +55,9 @@
             </div>
 
             <div>
-                <p id="ErroresRegistro"></p>
+                <p id="ErroresRegistro">
+                    <?php echo isset($_SESSION["Registro"]["Error"]) ? $_SESSION["Registro"]["Error"] : ""; ?>
+                </p>
             </div>
 
             <input type="submit" id="botonRegistrarse" value="Registrarse">

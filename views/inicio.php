@@ -14,7 +14,7 @@
         <div id="contenido-principal">
             <h1>Bienvenido</h1>
             <p>Explora nuestra amplia gama de pinturas y encuntra la tonalidad ideal para tu proyecto.</p>
-            <a id="btnexplorar" href="catalogo.html#todoC">Explorar</a>
+            <a id="btnexplorar" href="catalogo.php#todoC">Explorar</a>
         </div>
     </section>
    
@@ -24,22 +24,22 @@
             <p>!Lo tenemos todo!</p>
         </article>
         <div class="categoria domestica">
-           <a href="catalogo.html#domesticaC"> <img src="../public/imagenes/domestica.jpg" alt="Domestica">
+           <a href="catalogo.php#domesticaC"> <img src="../public/imagenes/domestica.jpg" alt="Domestica">
             <div class="texto-superpuesto">Domestica</div>
             </a>
         </div>
         <div class="categoria industrial">
-            <a href="catalogo.html#industrialC"><img src="../public/imagenes/Industrial.jpg" alt="Industrial">
+            <a href="catalogo.php#industrialC"><img src="../public/imagenes/Industrial.jpg" alt="Industrial">
             <div class="texto-superpuesto">Industrial</div>
             </a>
         </div>
         <div class="categoria medera">
-            <a href="catalogo.html#maderaC"><img src="../public/imagenes/madera.jpg" alt="Madera">
+            <a href="catalogo.php#maderaC"><img src="../public/imagenes/madera.jpg" alt="Madera">
             <div class="texto-superpuesto">Madera</div>
             </a>
         </div>
         <div class="categoria arquitectonica">
-            <a href="catalogo.html#arquitectonicaC"><img src="../public/imagenes/arquitectonica.jpg" alt="arquitectonica">
+            <a href="catalogo.php#arquitectonicaC"><img src="../public/imagenes/arquitectonica.jpg" alt="arquitectonica">
             <div class="texto-superpuesto">Arquitectonica</div>
             </a>
         </div>

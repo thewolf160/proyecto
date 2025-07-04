@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +17,9 @@
     <div id="inicioSesionDiv">
         <h1>Inicia Sesión</h1>
 
-        <form action="" method="">
+        <form action="../controllers/controllers_user/controlador_usuario.php" method="POST">
+            <input type="hidden" name="seccion" value="inicio_sesion">
+
             <div id="CampoCorreo" class="Campo">
                 <label for="ICorreo">Correo Electrónico</label><br>
                 <input type="text" name="ICorreo">
@@ -28,9 +32,15 @@
 
             <a href="" id="M">¿Has olvidado tu contraseña?</a><br>
 
+            <p id="Error">
+                <?php echo isset($_SESSION["Inicio_Sesion"]["Error"]) ? $_SESSION["Inicio_Sesion"]["Error"] : "";
+                    unset($_SESSION["Inicio_Sesion"]["Error"]);
+                ?>
+            </p>
+
             <div id="BtnMensajeIniciarSesion">
                 <input type="submit" value="Iniciar Sesión"><br>
-                <p>¿No tienes cuenta? <a href="registro.html">Registrate</a></p>
+                <p>¿No tienes cuenta? <a href="registro.php">Registrate</a></p>
             </div>
         </form>
     </div>

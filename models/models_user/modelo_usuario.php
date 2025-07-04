@@ -21,7 +21,7 @@
             foreach ($Existencia as $columna => $valor) {
                 $resultado = $operaciones->Consultar("usuarios", [$columna => $valor]);
                 
-                if(empty($resultado)) { return "Error al agregar usuario."; }
+                if(empty($resultado)) { return "La $columna con el valor que estas ingresando ya existe."; }
             }
             return $operaciones->Agregar("usuarios", $datos) ? "Usuario agregado." : "Error al agregar usuario.";
         }
