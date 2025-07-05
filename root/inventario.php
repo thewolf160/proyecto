@@ -36,12 +36,6 @@
         <section id="items-inventario" class="items-inventario"></section>
     </main>
 
-    <?php
-        if(!isset($_SESSION["usuario-root"]["productos"])){
-            echo '<p class="mensaje-vacio">No hay productos</p>';
-        }
-    ?>
-
     <dialog id="seccion-agregar">
         <div id="contenido-agregar">
             <form action="" id="form-agregar">
@@ -65,6 +59,13 @@
     <script src="/root/js/aside.js"></script>
     <script src="/root/js/inventario.js"></script>
     <script src="/root/js/modales.js"></script>
-    <script src="/root/js/events.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (!localStorage.getItem('formulario_enviado')) {
+                document.getElementById('formulario_inventario').submit();
+                localStorage.setItem('formulario_enviado', 'true');
+            }
+        });
+    </script>
 </body>
 </html>
