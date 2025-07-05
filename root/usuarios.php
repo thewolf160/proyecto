@@ -37,23 +37,28 @@
                     <?php
                         if(!isset($_SESSION["usuario-root"]["usuarios"])){
                             echo '<p class="mensaje-vacio">No hay usuarios</p>';
-                        }
-                    ?>
-
-                    <?php  foreach ($_SESSION["usuario-root"]["usuarios"] as $fila) {  ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($fila['identificacion'] ?? ''); ?></td>
-                            <td><?php echo htmlspecialchars($fila['nombre'] ?? ''); ?></td>
-                            <td><?php echo htmlspecialchars($fila['direccion'] ?? ''); ?></td>
-                            <td><?php echo htmlspecialchars($fila['correo'] ?? ''); ?></td>
-                            <td><?php echo htmlspecialchars($fila['fecha_registro'] ?? ''); ?></td>
-                        </tr>        
-                    <?php }?>
+                        } else {
+                            foreach ($_SESSION["usuario-root"]["usuarios"] as $fila) {  ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($fila['identificacion'] ?? ''); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['nombre'] ?? ''); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['direccion'] ?? ''); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['correo'] ?? ''); ?></td>
+                                    <td><?php echo htmlspecialchars($fila['fecha_registro'] ?? ''); ?></td>
+                                </tr>        
+                            <?php }
+                        } ?>
                 </tbody>
             </table>
         </main>
     <script src="../root/js/aside.js"></script>
-    <script src="/root/js/events.js"></script>
-    <script src="/root/js/events.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (!sessionStorage.getItem('formulario_enviado')) {
+                document.getElementById('formulario_usuarios').submit();
+                sessionStorage.setItem('formulario_enviado', 'true'); 
+            }
+        });
+    </script>
 </body>
 </html>
