@@ -2,8 +2,13 @@
     <aside>
         <nav>
             <a href="../root/usuarios.php">Usuarios</a>
-            <a href="../root/inventario.php">Inventario</a>
+            <a onclick="document.getElementById('formulario_inventario').submit();">Inventario</a>
             <a>Ventas</a>
             <a>Generar Reportes</a>
         </nav>
     </aside>
+
+    <form id="formulario_inventario" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+        <input type="hidden" name="seccion" value="Inventario">
+    </form>
+

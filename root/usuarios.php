@@ -51,6 +51,7 @@
                 </tbody>
             </table>
         </main>
+        
     <script src="/root/js/aside.js"></script>
     <script>
         window.addEventListener('load', function() {
