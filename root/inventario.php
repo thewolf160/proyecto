@@ -96,9 +96,9 @@
             </div>
         </div>
     </dialog>
-    <script src="/root/js/aside.js"></script>
-    <script src="/root/js/inventario.js"></script>
-    <script src="/root/js/modales.js"></script>
-    <script src="/root/js/events.js"></script>
+    <script src="../root/js/aside.js"></script>
+    <script src="../root/js/inventario.js"></script>
+    <script src="../root/js/modales.js"></script>
+    <script src="../root/js/events.js"></script>
 </body>
 </html>
