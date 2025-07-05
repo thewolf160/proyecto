@@ -163,7 +163,7 @@ main{
 }
 
 #info-producto h3 {
-    font-size: 1.1em;
+    font-size: 1em;
     color: #0f214d;
     margin-bottom: 2px;
     font-weight: 700;
@@ -172,9 +172,9 @@ main{
 }
 
 #info-producto p {
-    color: #2ba3ec;
-    font-size: 1em;
-    font-weight: 600;
+    color: #555;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    line-height: 1.5;
 }
 
 #inventario h2{ 

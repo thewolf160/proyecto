@@ -39,3 +39,42 @@ aside nav a{
     margin: 0 auto;
     cursor: pointer;
 }
+
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+li{
+    font-size: 1.4vw;
+    color: white;
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: 0.06vw;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+li:hover {
+    color: white;
+}
+
+li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+li:hover::after {
+    width: 100%;
+}

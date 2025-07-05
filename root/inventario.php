@@ -14,7 +14,10 @@
         if(!isset($_SESSION["usuario-root"]["Inventario"])){
             echo '<p class="mensaje-vacio">No hay productos</p>';
         }
+            
     ?>
+
+    
 
     <div id="aside"></div>
     <main id="inventario">
@@ -91,12 +94,8 @@
     <script src="../root/js/inventario.js"></script>
     <script src="../root/js/modales.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            if (!localStorage.getItem('formulario_enviado')) {
-                document.getElementById('formulario_inventario').submit();
-                localStorage.setItem('formulario_enviado', 'true');
-            }
-        });
+        let productos = <?php echo json_encode($_SESSION['Catalogo']['productos'] ?? []); ?>
     </script>
+    <script>mostrarProductos(productos)</script>
 </body>
 </html>
