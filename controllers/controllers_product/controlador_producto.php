@@ -47,9 +47,7 @@
 
             case "Inventario":
                 $resultado = $controlador->CargarProductos("Todo");
-                $_SESSION['usuario-root'] = [
-                    "productos" => $resultado
-                ];
+                $_SESSION['usuario-root']['Inventario'] = $resultado;
                 header("Location: ./../../root/inventario.php");
                 exit();
             break;

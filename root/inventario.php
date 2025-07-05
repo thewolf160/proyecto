@@ -9,14 +9,11 @@
     <title>Document</title>
 </head>
 <body>
-
-    <form id="formulario_inventario" action="../controllers/controllers_product/controlador_producto.php" method="POST">
-        <input type="hidden" name="seccion" value="Inventario">
-    </form>
-
     <?php
         /* AQUI ESTA TU MALDITO ARREGLO SAPO. USA UN BUCLE PARA EXPLORARLO */
-         $_SESSION["usuario-root"]["productos"];
+        if(!isset($_SESSION["usuario-root"]["Inventario"])){
+            echo '<p class="mensaje-vacio">No hay productos</p>';
+        }
     ?>
 
     <div id="aside"></div>
