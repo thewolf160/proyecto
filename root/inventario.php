@@ -16,7 +16,7 @@
 
     <?php
         /* AQUI ESTA TU MALDITO ARREGLO SAPO. USA UN BUCLE PARA EXPLORARLO */
-        $_SESSION["usuario-root"]["productos"];
+         $_SESSION["usuario-root"]["productos"];
     ?>
 
     <div id="aside"></div>
@@ -46,7 +46,7 @@
                 <input type="text" placeholder="Cantidad">
                 <div class="input-file-group">
                     <label for="imagen" class="custom-file-label">Seleccionar imagen</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*">
+                    <input type="file" class="imagen" name="imagen" accept="image/*">
                     <span id="nombre-imagen">Ningún archivo seleccionado</span>
                 </div>
             </form>
@@ -62,7 +62,7 @@
                 <label for="eliminar">Codigo del producto que desea eliminar: </label>
                 <input type="text" id="eliminar" name="eliminar">     
            </form>
-            <div id="btns eliminar">
+            <div id="btns-eliminar">
                 <button type="submit" form="form-eliminar">Eliminar</button>
                 <button onclick="cerrarModalEliminar()">Cancelar</button>
             </div>
@@ -80,7 +80,7 @@
                 <input type="text" placeholder="Cantidad">
                 <div class="input-file-group">
                     <label for="imagen" class="custom-file-label">Seleccionar imagen</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*">
+                    <input type="file" class="imagen" name="imagen" accept="image/*">
                     <span id="nombre-imagen">Ningún archivo seleccionado</span>
                 </div>
             </form>
@@ -93,10 +93,6 @@
     <script src="../root/js/aside.js"></script>
     <script src="../root/js/inventario.js"></script>
     <script src="../root/js/modales.js"></script>
-    <script src="../root/js/events.js"></script>
-    <script src="/root/js/aside.js"></script>
-    <script src="/root/js/inventario.js"></script>
-    <script src="/root/js/modales.js"></script>
     <script>
         window.addEventListener('load', function() {
             if (!localStorage.getItem('formulario_enviado')) {

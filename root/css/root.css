@@ -376,7 +376,7 @@ main{
     outline: none;
 }
 
-#btns\ eliminar {
+#btns-eliminar {
     display: flex;
     gap: 16px;
     width: 100%;
@@ -384,7 +384,7 @@ main{
     margin-top: 10px;
 }
 
-#btns\ eliminar button {
+#btns-eliminar button {
     padding: 10px 0;
     width: 120px;
     background: #2ba3ec;
@@ -397,7 +397,7 @@ main{
     transition: background 0.2s;
 }
 
-#btns\ eliminar button:hover {
+#btns-eliminar button:hover {
     background: #0f214d;
 }
 
