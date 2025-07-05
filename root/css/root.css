@@ -184,9 +184,14 @@ main{
 
 #btns-productos {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 24px;
     margin-bottom: 40px;
+    background-color: #0f214d;
+    padding: 16px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #btns-productos button {
@@ -197,17 +202,15 @@ main{
     border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.10);
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    transition: all 0.3S ease;
     letter-spacing: 0.5px;
 }
 
 #btns-productos button:hover{
-    background: #0f214d;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
-    outline: none;
+    background-color: #2392d1;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 }
 
 #barra-superior{
@@ -396,6 +399,83 @@ main{
 
 #btns\ eliminar button:hover {
     background: #0f214d;
+}
+
+#seccion-actualizar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    min-width: 320px;
+    max-width: 95vw;
+    width: 400px;
+    background: #fff;
+    animation: modalFadeIn 0.3s;
+}
+
+#contenido-actualizar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 28px 24px 28px;
+    gap: 18px;
+    width: 100%;
+}
+
+#form-actualizar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+#form-actualizar input[type="text"],
+#form-actualizar input[type="file"] {
+    padding: 10px 12px;
+    border: 1.5px solid #2ba3ec;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f4f6fa;
+    transition: all 0.3s ease;
+}
+
+#form-actualizar input[type="text"]:focus,
+#form-actualizar input[type="file"]:focus {
+    box-shadow: 0 0 0 0.2vw rgba(0, 74, 173, 0.2);
+    outline: none;
+}
+
+#btns-actualizar {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btns-actualizar button {
+    padding: 10px 0;
+    width: 120px;
+    background: #2ba3ec;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btns-actualizar button:hover {
+    background: #0f214d;
+}
+
+#inventario{
+    margin-top: 0;
 }
 
 

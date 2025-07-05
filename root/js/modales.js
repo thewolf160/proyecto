@@ -14,6 +14,14 @@ function cerrarModalEliminar(){
     document.getElementById("seccion-eliminar").close();
 }
 
+function abrirModalActualizar(){
+    document.getElementById("seccion-actualizar").showModal();
+}
+
+function cerrarModalActualizar(){
+    document.getElementById("seccion-actualizar").close();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('imagen');
     const nombre = document.getElementById('nombre-imagen');

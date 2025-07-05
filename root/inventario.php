@@ -12,7 +12,7 @@
         <section id="btns-productos">
             <button onclick="abrirModalAgregar()">Agregar Producto</button>
             <button onclick="abrirModalEliminar()">Eliminar Producto</button>
-            <button>Actualizar Producto</button>
+            <button onclick="abrirModalActualizar()">Actualizar Producto</button>
         </section>
         <h2>Productos Disponibles</h2>
         <section id="barra-superior">
@@ -73,7 +73,7 @@
             </form>
             <div id="btns-actualizar">
                 <button type="submit" form="form-actualizar">Actualizar</button>
-                <button>Cancelar</button>
+                <button onclick="cerrarModalActualizar()">Cancelar</button>
             </div>
         </div>
     </dialog>
