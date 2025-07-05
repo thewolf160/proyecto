@@ -1,13 +1,17 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PincOs - Catalogo</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../public/css/estilos_cat.css"> 
+  <link rel="stylesheet" href="../public/css/catalogo_estilos.css">
   <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
 </head>
+
 <body>
 
   <div id="navbar"></div>
@@ -17,33 +21,39 @@
 
     <div class="contenedor-busqueda" role="search">
       <span class="material-icons" aria-hidden="true">search</span>
-      <input type="search" id="inputBuscar" name="buscar" placeholder="Buscar" aria-label="Buscar pinturas" maxlength="50" autocomplete="off"/>
+      <form action="../controllers/controllers_product/controlador_producto.php" method="POST">
+        <input type="hidden" name="seccion" value="BusquedaNombres">
+        <input type="hidden" name="tipoUsuario" value="usuario">
+        <input type="text" name="IBusqueda">
+        <input type="submit" value="Buscar">
+      </form>
     </div>
 
-    <div class="filtros" role="group" aria-label="Filtros de productos">
-      <button type="button" aria-pressed="false" id="todoC">Todo</button>
-      <button type="button" aria-pressed="false" id="domesticaC">Domestica</button>
-      <button type="button" aria-pressed="false" id="industrialC">Industrial</button>
-      <button type="button" aria-pressed="false" id="maderaC">Madera</button>
-      <button type="button" aria-pressed="false" id="arquitectonicaC">Arquitectónica</button>
-    </div>
+    <form action="../controllers/controllers_product/controlador_producto.php" method="POST">
+      <input type="hidden" name="seccion" value="Catalogo">
+      <input type="submit" name="categoria" value="Todo">
+      <input type="submit" name="categoria" value="Domestica">
+      <input type="submit" name="categoria" value="Industrial">
+      <input type="submit" name="categoria" value="Madera">
+      <input type="submit" name="categoria" value="Arquitectonica">
+    </form>
 
-    <section class="rejilla-productos" aria-live="polite" aria-label="Lista de pinturas disponibles">
-      <article class="tarjeta-producto" role="group" aria-labelledby="prod1-titulo">
-        <div class="contenedor-imagen-producto" id="imagen-producto">
-          <img src="https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_250_ml_2.jpg" alt="Producto" />
-        </div>
-        <h2 id="prod-titulo" class="nombre-producto">Nombre del producto</h2>
-        <div class="estado-stock"><span class="material-icons" aria-hidden="true">check_circle</span>En stock</div>
-        <p class="productos-disponibles">Productos disponibles</p>
-        <div class="precio">precio</div>
-        <button class="btn-seleccionar" type="button">Seleccionar Opciones</button>
-      </article>
-    </section>
+    <section id="contenedor-productos"></section>
 
-    <dialog id="modal"></dialog>
 
+    <?php
+      if (isset($_SESSION["Inicio_Sesion"]["usuario"])) {
+        echo "<script src='../public/scripts/navbar2.js'></script>";
+      } else {
+        echo "<script src='../public/scripts/navbar.js'></script>";
+      }
+    ?>
+
+    <script>let logeado = <?php echo isset($_SESSION["Inicio_Sesion"]["usuario"]) ? 'true' : 'false'; ?>;</script>
+    <script>let productos = <?php echo json_encode($_SESSION['Catalogo']['productos'] ?? []); ?>;</script>
+    <script src="../public/scripts/TarjetaProductos.js"></script>
+    <script>MostrarProductos();</script>
   </main>
-  <script src="../public/scripts/navbar.js"></script>
 </body>
+
 </html>

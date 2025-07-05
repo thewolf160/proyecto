@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,11 +12,16 @@
 </head>
 <body>
     <div id="navbar"></div>
+
     <section id="seccion-principal">
         <div id="contenido-principal">
             <h1>Bienvenido</h1>
             <p>Explora nuestra amplia gama de pinturas y encuntra la tonalidad ideal para tu proyecto.</p>
-            <a id="btnexplorar" href="catalogo.php#todoC">Explorar</a>
+            <form id="formTodo" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                <input type="hidden" name="seccion" value="Catalogo">
+                <input type="hidden" name="categoria" value="Todo">
+            </form>
+            <a id="btnexplorar" onclick="document.getElementById('formTodo').submit();">Explorar</a>
         </div>
     </section>
    
@@ -23,26 +30,52 @@
             <h3 id="Explorar">PARA CONSTRUIR Y DECORAR</h3>
             <p>!Lo tenemos todo!</p>
         </article>
+
         <div class="categoria domestica">
-           <a href="catalogo.php#domesticaC"> <img src="../public/imagenes/domestica.jpg" alt="Domestica">
-            <div class="texto-superpuesto">Domestica</div>
+            <form id="formDomestica" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                <input type="hidden" name="seccion" value="Catalogo">
+                <input type="hidden" name="categoria" value="Domestica">
+            </form>
+            <a onclick="document.getElementById('formDomestica').submit();">
+                <img src="../public/imagenes/domestica.jpg" alt="Domestica">
+                <div class="texto-superpuesto">Domestica</div>
             </a>
         </div>
+
+
         <div class="categoria industrial">
-            <a href="catalogo.php#industrialC"><img src="../public/imagenes/Industrial.jpg" alt="Industrial">
-            <div class="texto-superpuesto">Industrial</div>
+            <form id="formIndustrial" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                <input type="hidden" name="seccion" value="Catalogo">
+                <input type="hidden" name="categoria" value="Industrial">
+            </form>
+            <a onclick="document.getElementById('formIndustrial').submit();">
+                <img src="../public/imagenes/Industrial.jpg" alt="Industrial">
+                <div class="texto-superpuesto">Industrial</div>
             </a>
         </div>
+
         <div class="categoria medera">
-            <a href="catalogo.php#maderaC"><img src="../public/imagenes/madera.jpg" alt="Madera">
-            <div class="texto-superpuesto">Madera</div>
+            <form id="formMadera" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                <input type="hidden" name="seccion" value="Catalogo">
+                <input type="hidden" name="categoria" value="Madera">
+            </form>
+            <a onclick="document.getElementById('formMadera').submit();">
+                <img src="../public/imagenes/madera.jpg" alt="Madera">
+                <div class="texto-superpuesto">Madera</div>
             </a>
         </div>
+
         <div class="categoria arquitectonica">
-            <a href="catalogo.php#arquitectonicaC"><img src="../public/imagenes/arquitectonica.jpg" alt="arquitectonica">
-            <div class="texto-superpuesto">Arquitectonica</div>
+            <form id="formArquitectonica" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                <input type="hidden" name="seccion" value="Catalogo">
+                <input type="hidden" name="categoria" value="Arquitectonica">
+            </form>
+            <a onclick="document.getElementById('formArquitectonica').submit();">
+                <img src="../public/imagenes/arquitectonica.jpg" alt="Arquitectonica">
+                <div class="texto-superpuesto">Arquitectonica</div>
             </a>
         </div>
+
     </section>
 
     <section id="contacto">
@@ -82,6 +115,14 @@
             <p>&copy; 2025 Todo Color Lara. Todos los derechos reservados.</p>
         </article>
     </footer>
-    <script src="../public/scripts/navbar2.js"></script>
+
+    <?php
+        if(isset($_SESSION["Inicio_Sesion"]["usuario"])){
+            echo "<script src='../public/scripts/navbar2.js'></script>";
+
+        } else {
+            echo "<script src='../public/scripts/navbar.js'></script>";
+        }
+    ?>
 </body>
 </html>

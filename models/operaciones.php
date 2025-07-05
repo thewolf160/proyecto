@@ -138,10 +138,10 @@
                 $resultado = $stmt->get_result();
                 $stmt->close();
 
-                $resultado->fetch_all(MYSQLI_ASSOC);
+                $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-                if($resultado === null) return "Datos no encontrados";
-                return $resultado;
+                if($datos === null) return "Datos no encontrados";
+                return $datos;
                 
             } catch (Exception $e) {
                 return $e->getMessage();

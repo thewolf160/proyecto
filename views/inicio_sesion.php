@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <title>PincOs-Inicio Sesiòn</title>
-    <link rel="stylesheet" href="../public/css/inicio_sesion.css">
+    <link rel="stylesheet" href="../public/css/inicio_sesion.css?v=1.0">
     <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
 </head>
 <body>

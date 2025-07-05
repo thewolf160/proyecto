@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +9,16 @@
     <title>Document</title>
 </head>
 <body>
+
+    <form id="formulario_inventario" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+        <input type="hidden" name="seccion" value="Inventario">
+    </form>
+
+    <?php
+        /* AQUI ESTA TU MALDITO ARREGLO SAPO. USA UN BUCLE PARA EXPLORARLO */
+        $_SESSION["usuario-root"]["productos"];
+    ?>
+
     <div id="aside"></div>
     <main id="inventario">
         <section id="btns-productos">
@@ -23,6 +35,13 @@
             </section>   
         <section id="items-inventario" class="items-inventario"></section>
     </main>
+
+    <?php
+        if(!isset($_SESSION["usuario-root"]["productos"])){
+            echo '<p class="mensaje-vacio">No hay productos</p>';
+        }
+    ?>
+
     <dialog id="seccion-agregar">
         <div id="contenido-agregar">
             <form action="" id="form-agregar">
@@ -35,7 +54,7 @@
     <label for="imagen" class="custom-file-label">Seleccionar imagen</label>
     <input type="file" id="imagen" name="imagen" accept="image/*">
     <span id="nombre-imagen">Ningún archivo seleccionado</span>
-</div>
+        </div>
             </form>
             <div id="btns-agregar">
                 <button type="submit" form="form-agregar">Aceptar</button>
@@ -46,5 +65,6 @@
     <script src="/root/js/aside.js"></script>
     <script src="/root/js/inventario.js"></script>
     <script src="/root/js/modales.js"></script>
+    <script src="/root/js/events.js"></script>
 </body>
 </html>

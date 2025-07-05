@@ -26,17 +26,23 @@
                     $_SESSION["Inicio_Sesion"]["Error"] = $resultado;
                     echo $_SESSION["Inicio_Sesion"]["Error"];
                     header("location: ./../../views/inicio_sesion.php");
-                } else {
+
+                } else if($resultado["nombre"] !== "root") {
                     $_SESSION["Inicio_Sesion"]["usuario"] = $resultado;
                     header("location: ./../../views/inicio.php");
+
+                } else {
+                    $_SESSION["usuario-root"] = $resultado;
+                    header("location: ./../../root/usuarioss.php");
                 }
                 exit();
             break;
 
             case "CerrarSesion":
+                session_destroy();
                 header("location: ./../../views/inicio.php");
                 exit();
-                break;
+            break;
 
             case "ActualizarUsuario":
                 $resultado = $controlador->ActualizarUsuario($datosNuevos);
@@ -49,7 +55,13 @@
 
             case "MostrarTodos":
                 $resultado = $controlador->ObtenerTodos();
-                break;
+                unset($resultado["clave"]);
+                unset($resultado["activo"]);
+
+                $_SESSION["usuario-root"]["usuarios"] = $resultado;
+                header("location: ./../../root/usuarios.php");
+                exit();
+            break;
         }
     } 
 

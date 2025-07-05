@@ -53,17 +53,18 @@
                 <label for="IContraseña">Contraseña</label>
                 <input type="password" name="IContraseña" id="IContraseña">
             </div>
-
-            <div>
-                <p id="ErroresRegistro">
-                    <?php echo isset($_SESSION["Registro"]["Error"]) ? $_SESSION["Registro"]["Error"] : ""; ?>
-                </p>
+          
+            <p id="Error">
+                <?php echo isset($_SESSION["Registro"]["Error"]) ? $_SESSION["Registro"]["Error"] : ""; 
+                    unset($_SESSION["Registro"]["Error"]);
+                ?>
+            </p>
+            
+            <div id="contenedor_btnRegistro">
+                <input type="submit" id="botonRegistrarse" value="Registrarse">
             </div>
-
-            <input type="submit" id="botonRegistrarse" value="Registrarse">
+           
         </form>
     </div>  
-
-    <script src="../public/scripts/mensaje.js"></script>
 </body>
 </html>

@@ -3,7 +3,14 @@
         <nav>
             <ul>
             <li><a href="../views/inicio.php">Inicio</a></li>
-            <li><a href="catalogo.php#todoC">Catálogo</a></li>
+                <li>
+                    <form id="formTodo" action="../controllers/controllers_product/controlador_producto.php" method="POST">
+                        <input type="hidden" name="seccion" value="Catalogo">
+                        <input type="hidden" name="categoria" value="Todo">
+                    </form>
+                    <a onclick="document.getElementById('formTodo').submit();">Catálogo</a>
+                </li>
+
             <li><a href="inicio.php#contacto">Contacto</a></li>
             <li><a href="../views/carrito.php">Carrito</a></li>
             </ul>
@@ -11,7 +18,10 @@
                 <button id="usuarioBoton" class="icono-usuario"><img src="../public/imagenes/usuario.png" alt="icono"></button>
                 <div id="menu-usuario" class="menu-usuario hidden">
                     <a href="">Editar Perfil</a>
-                    <button>Cerrar Sesión</button>
+                    <form action="../controllers/controllers_user/controlador_usuario.php" method="POST">
+                        <input type="hidden" name="seccion" value="CerrarSesion">
+                        <input type="submit" value="Cerrar Sesión">
+                    </form>
                 </div>
             </div>
         </nav>

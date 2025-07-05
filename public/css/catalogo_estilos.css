@@ -1,0 +1,270 @@
+/* Reset básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6fa;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  display: grid;
+  grid-template-rows: 3.75rem 1fr;
+  min-height: 100vh;
+  font-size: 16px; /* base para rem */
+}
+
+/* Contenedor principal */
+main {
+  grid-row: 2;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+/* Título */
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #0f214d;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Contenedor búsqueda */
+.contenedor-busqueda {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contenedor-busqueda:focus-within {
+  border-color: #0d3a7f;
+  box-shadow: 0 0 8px rgba(13, 58, 127, 0.3);
+}
+
+.contenedor-busqueda .material-icons {
+  font-size: 1.5rem;
+  color: #777;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.contenedor-busqueda input[type="text"] {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  padding: 0.5rem 0;
+  color: #0f214d;
+  min-width: 0;
+}
+
+/* Botones categoría */
+form[action="../controllers/controllers_product/controlador_producto.php"] input[type="submit"] {
+  background-color: #e1f0fa;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  margin: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0d3a7f;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+form[action="../controllers/controllers_product/controlador_producto.php"] input[type="submit"]:hover,
+form[action="../controllers/controllers_product/controlador_producto.php"] input[type="submit"]:focus {
+  background-color: #0571cd;
+  color: white;
+  outline: none;
+}
+
+/* Contenedor productos - MODIFICADO para 4 columnas */
+#contenedor-productos {
+  display: grid;
+  gap: clamp(1rem, 1.5vw, 2rem);
+  grid-template-columns: repeat(4, 1fr); /* Siempre 4 columnas */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Tarjeta producto - Versión más compacta */
+.tarjeta-producto {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.2rem; /* Reducido de 1.5rem */
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 380px; /* Reducido de 420px */
+  height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+}
+
+.tarjeta-producto:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-producto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background-color: #0d3a7f;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Imagen */
+.tarjeta-producto img {
+  width: 100%;
+  height: clamp(140px, 18vw, 200px); /* Reducido de clamp(160px, 20vw, 220px) */
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 0.8rem; /* Reducido de 1rem */
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.tarjeta-producto:hover img {
+  transform: scale(1.05);
+}
+
+/* Nombre producto */
+.tarjeta-producto h2 {
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: #0f214d;
+  margin-bottom: 0.5rem;
+}
+
+/* Precio */
+.tarjeta-producto p:nth-of-type(3) { /* Selector para el precio */
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  color: #0d3a7f;
+  margin-bottom: 1rem;
+}
+
+/* Descripción */
+.tarjeta-producto p:nth-of-type(4) { /* Selector para la descripción */
+  flex-grow: 1;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: #555;
+  margin-bottom: 1rem; /* Reducido de 1.2rem */
+  line-height: 1.4;
+}
+
+/* Botón seleccionar - Más compacto */
+.tarjeta-producto button {
+  background-color: #4CAF50; /* Verde base */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem; /* Reducido de 0.75rem */
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem); /* Reducido de clamp(1rem, 1.6vw, 1.2rem) */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  align-self: center;
+  width: 90%;
+  max-width: 220px; /* Reducido de 250px */
+  margin-top: auto;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.tarjeta-producto button:hover,
+.tarjeta-producto button:focus {
+  background-color: #45a049; /* Verde más oscuro al hover */
+  box-shadow: 0 6px 12px rgba(69, 160, 73, 0.4);
+  outline: none;
+}
+
+/* Mensaje vacío */
+.mensaje-vacio {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #777;
+  text-align: center;
+  margin-top: 3rem;
+  width: 100%;
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+}
+
+/* Responsive - MODIFICADO para adaptar las 4 columnas */
+@media (max-width: 1200px) {
+  #contenedor-productos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  #contenedor-productos {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablets grandes */
+  }
+}
+
+@media (max-width: 768px) {
+  #contenedor-productos {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  #contenedor-productos {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+  
+  .tarjeta-producto {
+    min-height: 340px; /* Más compacto en móviles (reducido de 380px) */
+    padding: 1rem; /* Menos padding en móviles */
+  }
+
+  .tarjeta-producto button {
+    padding: 0.5rem; /* Más compacto en móviles */
+    font-size: 0.9rem; /* Tamaño fijo en móviles */
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  main {
+    width: 95%;
+  }
+
+  form[action="../controllers/controllers_product/controlador_producto.php"] input[type="submit"] {
+    min-width: 80px;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  margin: 0 0.3rem 0.3rem 0;
+  }
+
+  .tarjeta-producto button {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}

@@ -7,59 +7,57 @@
     $modeloProducto = new ModeloProducto();
     $controlador = new Controlador_Producto();
 
-    $cargar = $controlador->CargarProductos("Todo");
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+        
+        switch ($seccion) {
+            case "agregar_producto":
+                $resultado = $controlador->Agregar();
+                // header("Location: ../views/agregarProducto.html");
+                exit();
+            break;
 
-    foreach ($cargar as $fila) {
-        print_r($fila); echo "<br><br>";// Muestra cada fila como array asociativo
-    }
+            case "modificar_producto":
+                $resultado = $controlador->ModificarProducto($datos, $datosNuevos);
 
-    switch ($seccion) {
-        case "agregar_producto":
-            $resultado = $controlador->Agregar();
-            unset($_SESSION['productos']);
-            $_SESSION['resultado'] = $resultado;
-            // header("Location: ../views/agregarProducto.html");
-            exit();
-        break;
-
-        case "modificar_producto":
-            $resultado = $controlador->ModificarProducto($datos, $datosNuevos);
-
-            if(isset($resultado["error"])){
-                echo $resultado["error"];
-                
-             } else {
-                return $resultado;
-            }
-        break;
-
-        case "Catalogo":
-            $categoria = $_POST["categoria"] ?? null;
-            $resultado = $controlador->CargarProductos($categoria);
-            unset($_SESSION['productos']);
-            $_SESSION['productos'] = $resultado;
-            //header("Location: ./../../views/catalogo.php"); Asi debe ir la ruta
-            exit();
-        break;
-
-        case "BusquedaNombres":
-            $resultado = $controlador->BuscarNombres();
-            
-            if(is_string($resultado)) {
-                echo $resultado;
-            } else {
-                foreach($resultado as $fila){
-                    echo $fila["nombre_producto"] . "<br>";
-                    echo $fila["stock"] . "<br>";
-
+                if(isset($resultado["error"])){
+                    echo $resultado["error"];
+                    
+                } else {
+                    return $resultado;
                 }
-            }
-        break;
+            break;
 
-        case "EliminarProducto":
-        break;
+            case "Catalogo":
+                $categoria = $_POST["categoria"] ?? null;
+                $resultado = $controlador->CargarProductos($categoria);
+                $_SESSION['Catalogo'] = [ 
+                    "productos" => $resultado
+                ];
+                header("Location: ./../../views/catalogo.php"); 
+                exit();
+            break;
+
+            case "BusquedaNombres":
+                $resultado = $controlador->BuscarNombres();
+                
+                if(is_string($resultado)) $_SESSION['Error'] = $resultado;
+                else $_SESSION['Catalogo'] = ["productos" => $resultado];
+                header("Location: ./../../views/catalogo.php");
+            break;
+
+            case "Inventario":
+                $resultado = $controlador->CargarProductos("Todo");
+                $_SESSION['usuario-root'] = [
+                    "productos" => $resultado
+                ];
+                header("Location: ./../../root/inventario.php");
+                exit();
+            break;
+
+            case "EliminarProducto":
+            break;
+        }
     }
-
 
 
     /* CONTROLADOR DE PRODUCTOS */

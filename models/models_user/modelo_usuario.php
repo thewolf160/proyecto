@@ -21,7 +21,7 @@
             foreach ($Existencia as $columna => $valor) {
                 $resultado = $operaciones->Consultar("usuarios", [$columna => $valor]);
                 
-                if(empty($resultado)) { return "La $columna con el valor que estas ingresando ya existe."; }
+                if(!empty($resultado)) { return "La $columna con el valor que estas ingresando ya existe."; }
             }
             return $operaciones->Agregar("usuarios", $datos) ? "Usuario agregado." : "Error al agregar usuario.";
         }
@@ -37,7 +37,7 @@
             $resultado = $operaciones->Consultar("usuarios", $datos);
             $datos["clave"] = $contraseña;
 
-            if(empty($resultado)) { return "Error al consultar usuario.";}
+            if(empty($resultado)) { return "Contrasela Incorrecta.";}
             
             if (password_verify($datos["clave"], $resultado["clave"])) {
                 return $resultado;
@@ -80,7 +80,7 @@
         /* ESTA FUNCION ES PARA OBTENER TODOS LOS USUARIOS */
         public function M_UsuarioObtenerTodos(){
             global $operaciones;
-            $consulta = "SELECT * FROM usuarios WHERE activo = 1";
+            $consulta = "SELECT * FROM usuarios WHERE activo = 1 AND id > 1";
             return $operaciones->ObtenerTodos($consulta);
         }
 

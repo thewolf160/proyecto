@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +12,7 @@
 </head>
 <body>
     <div id="navbar"></div>
+
     <main>
         <section id="items-carro" class="items-carro"></section>
         <section id="pedido">
@@ -74,9 +77,17 @@
             </div>
         </div>
     </dialog>
-    <script src="../public/scripts/navbar.js"></script>
     <script src="../public/scripts/catalago.js"></script>
     <script src="../public/scripts/modalPagar.js"></script>
     <script src="../public/scripts/checkbox.js"></script>
+
+    <?php
+        if(isset($_SESSION["Inicio_Sesion"]["usuario"])){
+            echo "<script src='../public/scripts/navbar2.js'></script>";
+
+        } else {
+            echo "<script src='../public/scripts/navbar.js'></script>";
+        }
+    ?>
 </body>
 </html>

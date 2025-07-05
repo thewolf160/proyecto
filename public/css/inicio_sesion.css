@@ -284,3 +284,26 @@ form #M {
         left: 3vw;
     }
 }
+
+#Error {
+    color: #e63946;  /* Rojo coral suavizado */
+    font-size: 1.2vw;
+    font-weight: 600;
+    text-align: center;
+    margin: 1vh 0 0 0;  /* Solo margen superior para no mover elementos */
+    padding: 0;
+    display: block;
+}
+
+/* Versión responsive */
+@media (max-width: 900px) {
+    #Error {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 600px) {
+    #Error {
+        font-size: 3vw;
+    }
+}

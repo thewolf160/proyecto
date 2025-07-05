@@ -70,7 +70,7 @@
             }
             $resultado = $operaciones->Modificar("productos", $datosProducto);
 
-            return empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario);
+            return empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario, "");
         }
 
 
@@ -92,7 +92,7 @@
            $consulta = "SELECT p.*, i.stock 
              FROM productos p
              LEFT JOIN inventario i ON p.id = i.producto_id
-             WHERE p.activo = 1 
+             WHERE p.activo = 1 AND i.stock > 0
              AND p.nombre_producto LIKE '%" . $busqueda . "%'";
             return $operaciones->ObtenerTodos($consulta);
         }
