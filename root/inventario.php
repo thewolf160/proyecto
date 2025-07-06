@@ -56,13 +56,5 @@
     <script src="/root/js/aside.js"></script>
     <script src="/root/js/inventario.js"></script>
     <script src="/root/js/modales.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            if (!localStorage.getItem('formulario_enviado')) {
-                document.getElementById('formulario_inventario').submit();
-                localStorage.setItem('formulario_enviado', 'true');
-            }
-        });
-    </script>
 </body>
 </html>
