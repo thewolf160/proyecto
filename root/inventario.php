@@ -17,8 +17,6 @@
             
     ?>
 
-    
-
     <div id="aside"></div>
     <main id="inventario">
         <section id="btns-productos">
