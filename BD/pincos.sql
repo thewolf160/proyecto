@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-07-2025 a las 21:35:14
+-- Tiempo de generación: 06-07-2025 a las 23:10:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -70,20 +70,26 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`id`, `producto_id`, `stock`, `fecha_ultima_entrada`, `fecha_ultima_salida`) VALUES
-(1, 1, 14, '2025-07-04 23:31:12', NULL),
-(2, 2, 6, '2025-07-05 01:40:01', NULL),
-(3, 3, 120, '2025-07-05 19:33:14', NULL),
-(4, 4, 85, '2025-07-05 19:33:14', NULL),
-(5, 5, 60, '2025-07-05 19:33:14', NULL),
-(6, 6, 45, '2025-07-05 19:33:14', NULL),
-(7, 7, 30, '2025-07-05 19:33:14', NULL),
-(8, 8, 20, '2025-07-05 19:33:14', NULL),
-(9, 9, 200, '2025-07-05 19:33:14', NULL),
-(10, 10, 150, '2025-07-05 19:33:14', NULL),
-(11, 11, 75, '2025-07-05 19:33:14', NULL),
-(12, 12, 180, '2025-07-05 19:33:14', NULL),
-(13, 13, 90, '2025-07-05 19:33:14', NULL),
-(14, 14, 110, '2025-07-05 19:33:14', NULL);
+(1, 1, 25, '2025-07-06 21:02:09', NULL),
+(2, 2, 18, '2025-07-06 21:02:09', NULL),
+(3, 3, 30, '2025-07-06 21:02:09', NULL),
+(4, 4, 15, '2025-07-06 21:02:09', NULL),
+(5, 5, 12, '2025-07-06 21:02:09', NULL),
+(6, 6, 20, '2025-07-06 21:02:09', NULL),
+(7, 7, 30, '2025-07-06 21:02:09', NULL),
+(8, 8, 8, '2025-07-06 21:02:09', NULL),
+(9, 9, 28, '2025-07-06 21:02:09', NULL),
+(10, 10, 15, '2025-07-06 21:02:09', NULL),
+(11, 11, 10, '2025-07-06 21:02:09', NULL),
+(12, 12, 22, '2025-07-06 21:02:09', NULL),
+(13, 13, 5, '2025-07-06 21:02:09', NULL),
+(14, 14, 18, '2025-07-06 21:02:09', NULL),
+(15, 15, 30, '2025-07-06 21:02:09', NULL),
+(16, 16, 30, '2025-07-06 21:02:09', NULL),
+(17, 17, 25, '2025-07-06 21:02:09', NULL),
+(18, 18, 14, '2025-07-06 21:02:09', NULL),
+(19, 19, 20, '2025-07-06 21:02:09', NULL),
+(20, 20, 30, '2025-07-06 21:02:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,28 +105,35 @@ CREATE TABLE `productos` (
   `precio` decimal(10,2) NOT NULL,
   `categoria` varchar(50) DEFAULT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `activo` tinyint(1) DEFAULT 1
+  `activo` tinyint(1) DEFAULT 1,
+  `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nombre_producto`, `descripcion`, `precio`, `categoria`, `fecha_creacion`, `activo`) VALUES
-(1, 'PTN123', 'Pintura Azul Marino', 'Pintura Mamalona. Esta Good. cómprenla.\r\n', 234.00, 'Madera', '2025-07-04 23:21:55', 1),
-(2, 'PPN456', 'Pintura Rojo Sangre', 'Rojo sangre god.', 567.00, 'Industrial', '2025-07-05 01:39:31', 1),
-(3, 'BRP001', 'Barniz Poliuretano Sayerlack', 'Barniz transparente para protección de madera contra rayaduras y humedad.', 455.99, 'Madera', '2025-07-05 19:31:35', 1),
-(4, 'ESM002', 'Esmalte Sintético Comex Madera', 'Pintura brillante o mate resistente a la intemperie para muebles y estructuras.', 322.50, 'Madera', '2025-07-05 19:31:35', 1),
-(5, 'LAM003', 'Laca Acrílica Sherwin-Williams', 'Acabado duradero para interiores y ebanistería, bajo olor.', 552.75, 'Madera', '2025-07-05 19:31:35', 1),
-(6, 'EPX004', 'Epoxi PPG Amerlock 400', 'Recubrimiento anticorrosivo para metales, resistente a químicos.', 892.99, 'Industrial', '2025-07-05 19:31:35', 1),
-(7, 'ATR005', 'Pintura Alto Tráfico Tile-Clad HS', 'Para pisos industriales, soporta maquinaria pesada y químicos.', 120.00, 'Industrial', '2025-07-05 19:31:35', 1),
-(8, 'INT006', 'Pintura Intumescente Nullifire', 'Protege estructuras metálicas en incendios, se expande con calor.', 150.50, 'Industrial', '2025-07-05 19:31:35', 1),
-(9, 'FAH007', 'Acrílica Comex Vinimex', 'Pintura elástica para fachadas, resistente a grietas y hongos.', 289.99, 'Arquitectonica', '2025-07-05 19:31:35', 1),
-(10, 'TEX008', 'Recubrimiento Texturizado Behr', 'Acabado decorativo que disimula imperfecciones en paredes.', 352.75, 'Arquitectonica', '2025-07-05 19:31:35', 1),
-(11, 'MIN009', 'Pintura Mineral Keim Soldalit', 'A base de silicato para restauración de edificios históricos.', 456.00, 'Arquitectonica', '2025-07-05 19:31:35', 1),
-(12, 'LAT010', 'Latex Acrílico Duration Home', 'Pintura lavable para paredes interiores, resistente a hongos.', 252.99, 'Domestica', '2025-07-05 19:31:35', 1),
-(13, 'ESM011', 'Esmalte al Agua Benjamin Moore', 'Bajo olor, acabado suave para muebles y gabinetes.', 402.50, 'Domestica', '2025-07-05 19:31:35', 1),
-(14, 'PIZ012', 'Pintura Pizarra Rust-Oleum', 'Convierte superficies en pizarras escribibles, ideal para niños.', 232.99, 'Domestica', '2025-07-05 19:31:35', 1);
+INSERT INTO `productos` (`id`, `codigo`, `nombre_producto`, `descripcion`, `precio`, `categoria`, `fecha_creacion`, `activo`, `img`) VALUES
+(1, 'MAD001', 'Barniz Protector Premium', 'Barniz incoloro para muebles de interior/exterior. Base agua. Rendimiento: 10 m²/L', 850.00, 'Madera', '2025-07-06 20:51:40', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(2, 'MAD002', 'Esmalte para Muebles', 'Acabado brillante, resistente a golpes. Disponible en 8 colores', 720.00, 'Madera', '2025-07-06 20:51:40', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(3, 'MAD003', 'Protector UV para Deck', 'Protección contra rayos UV y humedad. Duración: 3 años', 950.00, 'Madera', '2025-07-06 20:51:40', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(4, 'MAD004', 'Lasur Ecológico', 'Para madera en contacto con alimentos (juguetes, cocina)', 680.00, 'Madera', '2025-07-06 20:51:40', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(5, 'MAD005', 'Kit Restauración Madera', 'Incluye barniz, lijas y guantes. Cubre 5 m²', 1100.00, 'Madera', '2025-07-06 20:51:40', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(6, 'IND001', 'Pintura Epoxi para Metales', 'Anticorrosiva para maquinaria y estructuras. Rendimiento: 4 m²/L', 1500.00, 'Industrial', '2025-07-06 20:52:04', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(7, 'IND002', 'Pintura Poliuretano', 'Resistente a químicos y abrasión. Color gris RAL 7016', 1800.00, 'Industrial', '2025-07-06 20:52:04', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(8, 'IND003', 'Pintura Ignífuga', 'Retardante de llamas para instalaciones eléctricas', 2200.00, 'Industrial', '2025-07-06 20:52:04', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(9, 'IND004', 'Spray Anticorrosivo', 'Aplicación directa sobre óxido. Protección 5 años', 650.00, 'Industrial', '2025-07-06 20:52:04', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(10, 'IND005', 'Recubrimiento para Suelos', 'Para naves industriales. Soporta tráfico intenso', 1250.00, 'Industrial', '2025-07-06 20:52:04', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(11, 'ARQ001', 'Pintura Térmica Acrílica', 'Reduce temperatura interior en 5°C. Blanco y colores', 2800.00, 'Arquitectonica', '2025-07-06 20:52:38', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(12, 'ARQ002', 'Revestimiento Texturado', 'Efecto piedra natural. Ideal para hoteles', 1750.00, 'Arquitectonica', '2025-07-06 20:52:38', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(13, 'ARQ003', 'Pintura Fotocatalítica', 'Purifica el aire. Certificada LEED', 3200.00, 'Arquitectonica', '2025-07-06 20:52:38', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(14, 'ARQ004', 'Microcemento Líquido', 'Para suelos continuos. Acabado mate', 4200.00, 'Arquitectonica', '2025-07-06 20:52:38', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(15, 'ARQ005', 'Pintura de Silicato', 'Mineral, transpirable. Duración 15+ años', 1950.00, 'Arquitectonica', '2025-07-06 20:52:38', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(16, 'DOM001', 'Pintura Lavable', 'Resistente a manchas y lavados. 20 colores', 890.00, 'Domestica', '2025-07-06 20:52:48', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(17, 'DOM002', 'Kit Pintura Pizarra', 'Incluye rodillo y tizas. Cubre 6 m²', 750.00, 'Domestica', '2025-07-06 20:52:48', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(18, 'DOM003', 'Pintura Magnética', 'Base para imanes. Requiere 2 capas', 1300.00, 'Domestica', '2025-07-06 20:52:48', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(19, 'DOM004', 'Esmalte para Cocina', 'Antimanchas y antihongos. Blanco brillante', 980.00, 'Domestica', '2025-07-06 20:52:48', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg'),
+(20, 'DOM005', 'Pintura Ecológica', 'Libre de VOC. Certificada para niños', 1150.00, 'Domestica', '2025-07-06 20:52:48', 1, 'https://latitas-online.es/media/catalog/product/cache/61ca00f5e0007de330088524c71874eb/b/o/bote_de_pintura_1000_ml_1.jpg');
 
 -- --------------------------------------------------------
 
@@ -145,7 +158,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `identificacion`, `direccion`, `correo`, `clave`, `fecha_registro`, `activo`) VALUES
 (1, 'root', '11111111', 'Ninguna', 'root@gmail.com', '$2y$10$FUc0BRrgDu/R2fwq31kBZuT1YCSbMr9NvGXK71hzpnQtGQn3IheXC', '2025-07-04 22:12:49', 1),
-(2, 'Jesus Cortez', '32137510', 'Bobare, Lara, Venezuela', 'jesuscortez290306@gmail.com', '$2y$10$EivoAVtKrP7suDtWk6LAzuNptw.qju4RSUMaoz/qnKqXOoRQO2kj2', '2025-07-04 22:41:11', 1);
+(2, 'Jesus Cortez', '32137510', 'Bobare, Lara, Venezuela', 'jesuscortez290306@gmail.com', '$2y$10$EivoAVtKrP7suDtWk6LAzuNptw.qju4RSUMaoz/qnKqXOoRQO2kj2', '2025-07-04 22:41:11', 1),
+(3, 'Richard Cortez', '28712893', 'Barquisimeto, Carrera 19, Calle 54A', 'richardcort09@gmail.com', '$2y$10$ipL9.5aILEXLbq7sK/sXzu4m5uRVrlq.8G4.0Wu3HDRe0/nZhvNeW', '2025-07-06 09:32:17', 1),
+(4, 'Yonathan Nieles', '31161696', 'Carora, calle 98, carrera 3', 'yonathannieles@hotmal.com', '$2y$10$.WGWZhC7VyAu2/XM/oNQX.i2MAi9OWILnVPZBaqROae56O.zlUtMi', '2025-07-06 09:34:07', 1),
+(5, 'Juan Perdomo', '27198676', 'Barquisimeto, Bloque 10, Obelisco', 'jaberuskk@gmail.com', '$2y$10$6HYFgFu4gx.f3bT/uf8k4uobkynyDrzPMAFC7403FfW/vDXZMVxB6', '2025-07-06 09:35:37', 1);
 
 --
 -- Índices para tablas volcadas
@@ -207,19 +223,19 @@ ALTER TABLE `detalles_compras`
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

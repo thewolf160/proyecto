@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once __DIR__ . '/../../models/models_pucharse/modelo_compra.php';
 
     $modeloCompra = new ModeloCompra();
@@ -9,7 +10,13 @@
 
     $seccion = htmlspecialchars($_POST["seccion"]);
 
-   
+    switch($seccion){
+        case "ConsultarCompras":
+            $_SESSION['usuario-root']['compras'] = $modeloDetallesCompra->M_NostrarCompras();
+            header("Location: ../../root/ventas.php");
+            exit();
+        break;
+    }
 
     class ControladorCompra{
         public function __construct(){}
