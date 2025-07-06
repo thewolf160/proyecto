@@ -88,7 +88,7 @@
         /* ESTA FUNCION ES PARA BUSCAR USUARIOS */
         public function M_UsuarioBusqueda($busqueda){
             global $operaciones;
-            $consulta = "SELECT * FROM usuarios WHERE activo = 1 AND (nombre LIKE '%$busqueda%' OR  identificacion LIKE '%$busqueda%')";
+            $consulta = "SELECT * FROM usuarios WHERE activo = 1 AND id > 1 AND (nombre LIKE '%$busqueda%' OR  identificacion LIKE '%$busqueda%')";
             $resultado = $operaciones->ObtenerTodos($consulta);
             return empty($resultado) ? "Usuario no encontrado" : $resultado;
         }

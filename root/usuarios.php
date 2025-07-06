@@ -21,11 +21,18 @@
         <main id="usuarios">
             <h1>Usuarios Registrados</h1>
             <section id="busqueda2">
-                <form id="form-busqueda2">
-                    <input type="text" id="buscar2" name="buscar" placeholder="Buscar..."/>
+                <form action="../controllers/controllers_user/controlador_usuario.php" method="POST" id="form-busqueda2">
+                    <input type="hidden" name="seccion" value="BarraBusqueda">
+                    <input type="text" id="buscar2" name="IBusqueda" placeholder="Buscar..."/>
                     <button type="submit">Buscar</button>
                 </form>
-            </section>     
+            </section> 
+            
+            <form action="../controllers/controllers_user/controlador_usuario.php" method="POST">
+                <input type="hidden" name="seccion" value="MostrarTodos">
+                <input type="submit" value="Ver Todos">
+            </form>
+            
             <table id="table-usuarios">
                 <tr>
                     <th>Cédula</th>
@@ -36,8 +43,9 @@
                 </tr>
                 <tbody>
                     <?php
-                        if(!isset($_SESSION["usuario-root"]["usuarios"])){
-                            echo '<tr<class="mensaje-vacio">No hay usuarios</tr>';
+                        if(isset($_SESSION["Error"])){
+                            echo '<tr><td colspan="5" class="mensaje-vacio">No hay usuarios registrados</td></tr>';
+                            unset($_SESSION["Error"]);
                         } else {
                             foreach ($_SESSION["usuario-root"]["usuarios"] as $fila) {  ?>
                                 <tr>

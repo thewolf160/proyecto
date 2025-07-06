@@ -59,18 +59,22 @@
             global $operaciones;
             global $modeloInventario;
 
-            $Existencia = [];
+            $Existencia = $operaciones->Consultar("productos", ["codigo" => $datosProducto["codigo"]]);
 
-            if(isset($datos["codigo"])){
-                $Existencia["codigo"] = $datos["codigo"];
+            if($Existencia !== null) {
+                $datosProducto["id"] = $Existencia["id"];
+                $resultado = $operaciones->Modificar("productos", $datosProducto);
+            
+            } else return "ERROR. No existe el producto.";
 
-                if($operaciones->Consultar("productos", ["codigo" => $datos["codigo"]]) !== null){
-                    return "ERROR: Ya existe un producto con ese codigo";
-                }
-            }
-            $resultado = $operaciones->Modificar("productos", $datosProducto);
+            $inventario = $operaciones->Consultar("inventario", ["producto_id" => $datosProducto["id"]]);
+            
+            if($inventario !== null) {
+                $datosInventario["id"] = $inventario["id"];
+                
+            } else return "ERROR: No existe el inventario.";
 
-            return empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario, "");
+            return empty($resultado) ? "ERROR: No se pudo modificar el producto" : $modeloInventario->M_InventarioModificar($datosInventario, "Agregar");
         }
 
 
@@ -104,13 +108,17 @@
             global $operaciones;
             global $modeloInventario;
         
-            $resultado = $operaciones->Modificar("productos", $datos);
+            $objeto = $operaciones->Consultar("productos", ["codigo" => $datos["codigo"]]);
+
+            $objeto["activo"] = "0";
+
+            $resultado = $operaciones->Modificar("productos", $objeto);
 
             if(empty($resultado)){
                 return "ERROR: No se pudo eliminar el producto.";
 
             }  else {
-                $inventario = $operaciones->Consultar("inventario", ["producto_id" => $datos["id"]]);
+                $inventario = $operaciones->Consultar("inventario", ["producto_id" => $objeto["id"]]);
 
                 if($inventario !== null){
                     $modificacionInventario = [

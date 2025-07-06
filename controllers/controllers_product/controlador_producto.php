@@ -11,20 +11,30 @@
         
         switch ($seccion) {
             case "agregar_producto":
-                $resultado = $controlador->Agregar();
-                // header("Location: ../views/agregarProducto.html");
+                $agregado = $controlador->Agregar();
+                $resultado = $controlador->CargarProductos("Todo");
+                unset($_SESSION["usuario-root"]["Inventario"]);
+                $_SESSION["usuario-root"]['Inventario'] = $resultado;
+                header("Location: ./../../root/inventario.php");
                 exit();
             break;
 
             case "modificar_producto":
-                $resultado = $controlador->ModificarProducto($datos, $datosNuevos);
+                $actualizar = $controlador->ModificarProducto();
+                $resultado = $controlador->CargarProductos("Todo");
 
-                if(isset($resultado["error"])){
-                    echo $resultado["error"];
-                    
-                } else {
-                    return $resultado;
+                if(is_string($resultado)) {
+                    unset($_SESSION["Error"]);
+                    $_SESSION["Error"] = $actualizar;
+                    header("Location: ./../../root/inventario.php");
+                    exit();
                 }
+                    
+                unset($_SESSION["usuario-root"]["Inventario"]);
+                $_SESSION["usuario-root"]['Inventario'] = $resultado;
+                header("Location: ./../../root/inventario.php");
+                exit();
+                
             break;
 
             case "Catalogo":
@@ -38,21 +48,50 @@
             break;
 
             case "BusquedaNombres":
-                $resultado = $controlador->BuscarNombres();
-                
-                if(is_string($resultado)) $_SESSION['Error'] = $resultado;
-                else $_SESSION['Catalogo'] = ["productos" => $resultado];
-                header("Location: ./../../views/catalogo.php");
+                $tipoUsuario = htmlspecialchars($_POST["tipoUsuario"] ?? null);
+                $resultado = $controlador->BuscarNombres($tipoUsuario);
+
+                if(is_string($resultado)){
+                    unset($_SESSION["Error"]);
+                    $_SESSION['Error'] = $resultado;
+
+                    if($tipoUsuario === "root") {
+                        header("Location: ./../../root/inventario.php");
+                    
+                    } else { 
+                        header("Location: ./../../views/catalogo.php");
+                    }
+
+                } else { 
+                    if($tipoUsuario === "root") {
+                        unset($_SESSION["usuario-root"]["Inventario"]);
+                        $_SESSION["usuario-root"]["Inventario"] = $resultado;
+                        header("Location: ./../../root/inventario.php");
+
+                    } else {
+                        unset($_SESSION["Catalogo"]["productos"]);
+                        $_SESSION['Catalogo'] = ["productos" => $resultado];
+                        header("Location: ./../../views/catalogo.php");
+                    }
+                }
+                exit();
             break;
 
             case "Inventario":
                 $resultado = $controlador->CargarProductos("Todo");
+                unset($_SESSION["usuario-root"]["Inventario"]);
                 $_SESSION['usuario-root']['Inventario'] = $resultado;
                 header("Location: ./../../root/inventario.php");
                 exit();
             break;
 
             case "EliminarProducto":
+                $controlador->EliminarProducto();
+                $resultado = $controlador->CargarProductos("Todo");
+                unset($_SESSION["usuario-root"]["Inventario"]);
+                $_SESSION["usuario-root"]['Inventario'] = $resultado;
+                header("Location: ./../../root/inventario.php");  
+                exit();
             break;
         }
     }
@@ -67,10 +106,12 @@
         public function Agregar(){  // funciona
             global $modeloProducto;
 
-            $resutado = $this->ValidarDatos();
+            $resultado = $this->ValidarDatos();
 
-            $datosProducto = $resutado["datos"];
-            $datosInventario = $resutado["datosInventario"];
+            if(is_string($resultado)) return $resultado;
+
+            $datosProducto = $resultado["datos"];
+            $datosInventario = $resultado["datosInventario"];
 
             $resultado = $modeloProducto->M_ProductoAgregar($datosProducto, $datosInventario);
           
@@ -86,50 +127,25 @@
 
 
         /* ESTA FUNCION ES PARA MODIFICAR UN PRODUCTO */
-        public function ModificarProducto($datosViejos){ // funciona
+        public function ModificarProducto(){ // funciona
             global $modeloProducto;
 
             /* Datos nuevos */
             $DatosNuevos = $this->ValidarDatos();
+    
+            if(is_string($DatosNuevos)) return $DatosNuevos;
+
             $ProductoNuevo = $DatosNuevos["datos"];
             $InventarioNuevo = $DatosNuevos["datosInventario"];
 
-            /* Datos actuales */
-            $ProductoActual = [
-                "id" => $datosViejos["producto_id"],
-                "nombre_producto" => $datosViejos["nombre_producto"],
-                "codigo" => $datosViejos["codigo"],
-                "descripcion" => $datosViejos["descripcion"],
-                "precio" => $datosViejos["precio"],
-                "categoria" => $datosViejos["categoria"],
-            ];
-            $InventarioActual = [
-                "id" => $datosViejos["id"],
-                "stock" => $datosViejos["stock"],
-            ];
-
-
-            $idProducto = $ProductoActual["id"];
-            $idInventario = $InventarioActual["id"];
-
-            unset($InventarioActual["id"]);
-            unset($ProductoActual["id"]);
-
-            $InventarioFinal = ExtraerIguales($InventarioActual, $InventarioNuevo);
-            $ProductoFinal = ExtraerIguales($ProductoActual, $ProductoNuevo);
-
-            $ProductoFinal["id"] = $idProducto;
-            $InventarioFinal["id"] = $idInventario;
-
-            return $modeloProducto->ProductoModificar($ProductoFinal, $InventarioFinal);
+            return $modeloProducto->ProductoModificar($ProductoNuevo, $InventarioNuevo);
         }
 
 
-        public function BuscarNombres(){
+        public function BuscarNombres($tipoUsuario){
             global $modeloProducto;
 
             $nombre = htmlspecialchars($_POST["IBusqueda"] ?? null);
-            $tipoUsuario = htmlspecialchars($_POST["tipoUsuario"] ?? null);
 
             if(DatosVacios(["nombre_producto" => $nombre])) return "Datos incompletos.";
 
@@ -140,8 +156,8 @@
         /* ESTA FUNCION ES PARA ELIMINAR UN PRODUCTO */
         public function EliminarProducto(){ // funciona
             global $modeloProducto;
-            $id = htmlspecialchars($_POST["id"] ?? null);
-            $datos = ["id" => $id, "activo" => "0"];
+            $codigo = htmlspecialchars($_POST["codigo"] ?? null);
+            $datos = ["codigo" => $codigo];
 
             return $modeloProducto->M_ProductoEliminnar($datos);
         }

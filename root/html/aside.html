@@ -2,15 +2,24 @@
     <aside>
         <nav>
             <ul>
-            <li><a href="../root/usuarios.php">Usuarios</a></li>
+            <li><a onclick="document.getElementById('formulario_usuarios').submit();">Usuarios</a></li>
             <li><a onclick="document.getElementById('formulario_inventario').submit();">Inventario</a></li>
             <li><a>Ventas</a></li>
             <li><a>Reportes</a></li>
+            <li><a onclick="document.getElementById('formulario_cerrar_sesion').submit();">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </aside>
 
     <form id="formulario_inventario" action="../controllers/controllers_product/controlador_producto.php" method="POST">
         <input type="hidden" name="seccion" value="Inventario">
+    </form>
+
+    <form id="formulario_usuarios" action="../controllers/controllers_user/controlador_usuario.php" method="POST">
+        <input type="hidden" name="seccion" value="MostrarTodos">
+    </form>
+
+    <form id="formulario_cerrar_sesion" action="../controllers/controllers_user/controlador_usuario.php" method="POST"></form>
+        <input type="hidden" name="seccion" value="CerrarSesion">
     </form>
 

@@ -51,7 +51,13 @@
 
             case "BarraBusqueda":
                 $resultado = $controlador->BarraBusqueda();
-                break;
+
+                if(is_string($resultado)) $_SESSION["Error"] = $resultado; 
+                else $_SESSION["usuario-root"]["usuarios"] = $resultado;
+                header("location: ./../../root/usuarios.php");
+                exit();
+
+            break;
 
             case "MostrarTodos":
                 $resultado = $controlador->ObtenerTodos();
@@ -146,7 +152,7 @@
         {
             global $modeloUsuario;
             $busqueda = htmlspecialchars($_POST["IBusqueda"] ?? null);
-            if (DatosVacios(["busqueda" => $busqueda]))  return "Datos incompletos.";
+            if(DatosVacios(["busqueda" => $busqueda])) return "El usuario no existe.";
             return $modeloUsuario->M_UsuarioBusqueda($busqueda);
         }
 
