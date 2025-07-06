@@ -7,7 +7,7 @@ productos.forEach(producto => {
     item.classList.add("item");
 
     item.innerHTML = `
-        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <img src="${producto.img}" alt="${producto.nombre}">
         <div id="info-producto">
             <h3>${producto.nombre_producto}</h3>
             <p>Codigo: ${producto.codigo} </p>

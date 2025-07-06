@@ -1,7 +1,7 @@
 function mostrarProductosCarrito(){
     const contenedor = document.getElementById("items-carro");
     let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
-
+    
     contenedor.innerHTML = '';
 
     if(carrito.length === 0){
@@ -15,7 +15,7 @@ carrito.forEach(producto => {
     item.classList.add("item");
 
     item.innerHTML = `
-        <img src="${producto.imagen}" alt="${producto.nombre_producto}">
+        <img src="${producto.img ?? ''}" alt="${producto.nombre_producto}">
         <div class="info">
             <h3>${producto.nombre_producto}</h3>
             <p>Bs. ${producto.precio}</p>
