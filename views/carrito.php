@@ -77,10 +77,9 @@
             </div>
         </div>
     </dialog>
-    <script src="../public/scripts/catalago.js"></script>
+    <script src="../public/scripts/carrito.js"></script>
     <script src="../public/scripts/modalPagar.js"></script>
-    <script src="../public/scripts/checkbox.js"></script>
-
+    <script src="../public/scripts/checkbox.js"></script>   
     <?php
         if(isset($_SESSION["Inicio_Sesion"]["usuario"])){
             echo "<script src='../public/scripts/navbar2.js'></script>";

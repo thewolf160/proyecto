@@ -199,7 +199,7 @@
         let productos = <?php echo json_encode($_SESSION['usuario-root']['Inventario'] ?? []); ?>
     </script>
     <script>
-        mostrarProductos(productos)
+        mostrarProductos(productos);
     </script>
 </body>
 

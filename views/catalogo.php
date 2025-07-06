@@ -39,7 +39,18 @@
     </form>
 
     <section id="contenedor-productos"></section>
-
+    
+    <dialog id="modulo-mensajesesion">
+      <div id="contenido">
+        <article>
+          <p>Para agregar productos al carrito, primero debes iniciar sesión en tu cuenta.</p>
+        </article>
+        <div>
+          <button onclick="window.location.href='inicio_sesion.php'">Iniciar Sesión</button>
+          <button onclick="cerrarModal()">Cerrar</button> 
+        </div>
+      </div>
+    </dialog>
 
     <?php
       if (isset($_SESSION["Inicio_Sesion"]["usuario"])) {
@@ -51,8 +62,8 @@
 
     <script>let logeado = <?php echo isset($_SESSION["Inicio_Sesion"]["usuario"]) ? 'true' : 'false'; ?>;</script>
     <script>let productos = <?php echo json_encode($_SESSION['Catalogo']['productos'] ?? []); ?>;</script>
-    <script src="../public/scripts/TarjetaProductos.js"></script>
-    <script>MostrarProductos();</script>
+    <script  src="../public/scripts/TarjetaProductos2.js"></script>
+    <script>mostrarProductos(productos);</script>
   </main>
 </body>
 
