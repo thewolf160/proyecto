@@ -21,7 +21,7 @@
             <h1>Usuarios Registrados</h1>
             <section id="busqueda">
                 <form id="form-busqueda">
-                    <input type="text" id="buscar" name="buscar" placeholder="Buscar..." hidden usuario-root/>
+                    <input type="text" id="buscar" name="buscar" placeholder="Buscar..."/>
                     <button type="submit">Buscar</button>
                 </form>
             </section>     
@@ -51,8 +51,7 @@
                 </tbody>
             </table>
         </main>
-        
-    <script src="/root/js/aside.js"></script>
+    <script src="../root/js/aside.js"></script>
     <script>
         window.addEventListener('load', function() {
             if (!sessionStorage.getItem('formulario_enviado')) {

@@ -1,15 +1,5 @@
-const productos = [
-    {
-        codigo: "LMJSKS12",
-        nombre: "Pintura Verde",
-        imagen: "",
-        descripcion: "verde",
-        precio: "100",
-        cantidad: "10"
-    }
-]
-
-
+function mostrarProductos(productos){
+    console.log(productos);
 const contenedor = document.getElementById("items-inventario");
 
 productos.forEach(producto => {
@@ -20,12 +10,12 @@ productos.forEach(producto => {
     item.innerHTML = `
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <div id="info-producto">
-            <h3>${producto.nombre}</h3>
-            <p>Descripción: ${producto.descripcion} </p>
+            <h3>${producto.nombre_producto}</h3>
             <p>Codigo: ${producto.codigo} </p>
             <p>Precio: Bs. ${producto.precio} </p>
-            <p>Cantidad Disponible: ${producto.cantidad} </p>
+            <p>Cantidad Disponible: ${producto.stock} </p>
         </div>
     `;
     contenedor.appendChild(item);
 });
+}
