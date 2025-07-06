@@ -33,7 +33,7 @@
 
                 } else {
                     $_SESSION["usuario-root"] = $resultado;
-                    header("location: ./../../root/usuario.php");
+                    header("location: ./../../root/usuarios.php");
                 }
                 exit();
             break;

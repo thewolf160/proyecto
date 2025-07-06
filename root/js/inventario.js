@@ -1,5 +1,4 @@
 function mostrarProductos(productos){
-    console.log(productos);
 const contenedor = document.getElementById("items-inventario");
 
 productos.forEach(producto => {

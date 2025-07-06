@@ -94,7 +94,7 @@
     <script src="../root/js/inventario.js"></script>
     <script src="../root/js/modales.js"></script>
     <script>
-        let productos = <?php echo json_encode($_SESSION['Catalogo']['productos'] ?? []); ?>
+        let productos = <?php echo json_encode($_SESSION['usuario-root']['Inventario'] ?? []); ?>
     </script>
     <script>mostrarProductos(productos)</script>
 </body>
