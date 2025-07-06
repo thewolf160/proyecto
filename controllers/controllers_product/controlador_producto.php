@@ -7,6 +7,7 @@
     $modeloProducto = new ModeloProducto();
     $controlador = new Controlador_Producto();
 
+
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         
         switch ($seccion) {

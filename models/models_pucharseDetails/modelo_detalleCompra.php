@@ -76,7 +76,6 @@
 
                     if($diferencia->days >= 10){
                         $obj = $modelo_inventario->M_InventarioConsultar(["id" => $unidad["inventario_id"]]);
-
                         $obj["stock"] = $obj["stock"] + $unidad["cantidad"];
 
                         $modelo_inventario->M_InventarioModificar($obj, "");

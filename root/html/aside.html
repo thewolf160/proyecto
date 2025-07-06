@@ -4,8 +4,7 @@
             <ul>
             <li><a onclick="document.getElementById('formulario_usuarios').submit();">Usuarios</a></li>
             <li><a onclick="document.getElementById('formulario_inventario').submit();">Inventario</a></li>
-            <li><a>Ventas</a></li>
-            <li><a>Reportes</a></li>
+            <li><a onclick="document.getElementById('formulario_ventas').submit();">Ventas</a></li>
             <li><a onclick="document.getElementById('formulario_cerrar_sesion').submit();">Cerrar Sesión</a></li>
             </ul>
         </nav>
@@ -21,5 +20,9 @@
 
     <form id="formulario_cerrar_sesion" action="../controllers/controllers_user/controlador_usuario.php" method="POST"></form>
         <input type="hidden" name="seccion" value="CerrarSesion">
+    </form>
+
+    <form action="../controllers/controller_pucharse/controlador_compra.php" method="POST" id="formulario_ventas">
+        <input type="hidden" name="seccion" value="ConsultarCompras">
     </form>
 

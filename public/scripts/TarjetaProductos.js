@@ -12,7 +12,7 @@ function MostrarProductos() {
         html += `
         <section class="rejilla-productos" aria-live="polite" aria-label="Lista de pinturas disponibles">
             <article class="tarjeta-producto" role="group" aria-labelledby="prod${index}-titulo">
-                <img src="${producto.imagen ?? ''}" alt="${producto.nombre_producto ?? ''}">
+                <img src="${producto.img ?? ''}" alt="${producto.nombre_producto ?? ''}">
                 <h2>${producto.nombre_producto ?? ''}</h2>
                 <p hidden>${producto.stock ?? '0'}</p>
                 <p hidden>${producto.id ?? ''}</p>
