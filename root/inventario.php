@@ -5,8 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../root/css/root.css">
-    <title>Document</title>
+    
+    <title>Gestor de Inventario</title>
 </head>
 <body>
     <?php
@@ -20,74 +22,161 @@
     <div id="aside"></div>
     <main id="inventario">
         <section id="btns-productos">
-            <button onclick="abrirModalAgregar()">Agregar Producto</button>
-            <button onclick="abrirModalEliminar()">Eliminar Producto</button>
-            <button onclick="abrirModalActualizar()">Actualizar Producto</button>
+    <button onclick="abrirModalAgregar()">
+        <i class="fas fa-plus"></i> Agregar  <!-- Icono + texto -->
+    </button>
+    <button onclick="abrirModalEliminar()">
+        <i class="fas fa-trash"></i> Eliminar
+    </button>
+    <button onclick="abrirModalActualizar()">
+        <i class="fas fa-sync"></i> Actualizar
+    </button>
         </section>
-        <h2>Productos Disponibles</h2>
         <section id="barra-superior">
-                <form id="form-busqueda">
-                    <input type="text" id="buscar" name="buscar" placeholder="Buscar..."  usuario-root/>
-                    <button type="submit">Buscar</button>
-                </form>
-            </section>   
+            <h2>Productos Disponibles</h2>  <!-- Moví el título aquí -->
+            <form id="form-busqueda">
+                <div class="search-container">  <!-- Contenedor para mejor estilo -->
+                <input type="text" id="buscar" name="buscar" placeholder="Buscar productos..."/>
+                <button type="submit">
+                <i class="fas fa-search"></i>  <!-- Icono de lupa -->
+            </button>
+        </div>
+    </form>
+</section>  
         <section id="items-inventario" class="items-inventario"></section>
     </main>
 
-    <dialog id="seccion-agregar">
-        <div id="contenido-agregar">
-            <form action="" id="form-agregar">
-                <input type="text" placeholder="Nombre">
-                <input type="text"placeholder="Descripción">
-                <input type="text" placeholder="Precio">
-                <input type="text" placeholder="Codigo">
-                <input type="text" placeholder="Cantidad">
-                <div class="input-file-group">
-                    <label for="imagen" class="custom-file-label">Seleccionar imagen</label>
-                    <input type="file" class="imagen" name="imagen" accept="image/*">
-                    <span id="nombre-imagen">Ningún archivo seleccionado</span>
-                </div>
-            </form>
-            <div id="btns-agregar">
-                <button type="submit" form="form-agregar">Agregar</button>
-                <button onclick="cerrarModalAgregar()">Cancelar</button>
+    <!-- Modal Agregar -->
+<dialog id="seccion-agregar">
+    <div id="contenido-agregar">
+        <h2><i class="fas fa-plus-circle"></i> Agregar Producto</h2>
+        <form id="form-agregar">
+            <div class="input-group">
+                <label for="nombre"><i class="fas fa-tag"></i> Nombre</label>
+                <input type="text" id="nombre">
             </div>
-        </div>
-    </dialog>
-    <dialog id="seccion-eliminar">
-        <div id="contenido-eliminar">
-           <form action="" id="form-eliminar">
-                <label for="eliminar">Codigo del producto que desea eliminar: </label>
-                <input type="text" id="eliminar" name="eliminar">     
-           </form>
-            <div id="btns-eliminar">
-                <button type="submit" form="form-eliminar">Eliminar</button>
-                <button onclick="cerrarModalEliminar()">Cancelar</button>
+            <div class="input-group">
+                <label for="descripcion"><i class="fas fa-align-left"></i> Descripción</label>
+                <input type="text" id="descripcion" placeholder="Detalles del producto">
             </div>
-        </div>
-    </dialog>
-    <dialog id="seccion-actualizar">
-        <div id="contenido-actualizar">
-            <form action="" id="form-actualizar">
-                <label for="actualizar">Codigo del producto que desea actualizar:</label>
-                <input type="text" id="actualizar" name="actualizar">
-                <input type="text" placeholder="Nombre">
-                <input type="text"placeholder="Descripción">
-                <input type="text" placeholder="Precio">
-                <input type="text" placeholder="Codigo">
-                <input type="text" placeholder="Cantidad">
-                <div class="input-file-group">
-                    <label for="imagen" class="custom-file-label">Seleccionar imagen</label>
-                    <input type="file" class="imagen" name="imagen" accept="image/*">
-                    <span id="nombre-imagen">Ningún archivo seleccionado</span>
-                </div>
-            </form>
-            <div id="btns-actualizar">
-                <button type="submit" form="form-actualizar">Actualizar</button>
-                <button onclick="cerrarModalActualizar()">Cancelar</button>
+            <div class="input-group">
+                <label for="categoria"><i class="fas fa-align-left"></i> Categoria</label>
+                <input list="categorias-inp" type="text" id="categoria" placeholder="Categoria Del Producto">
+                <datalist id="categorias-inp">
+                    <option value="Domestica"></option>
+                    <option value="Arquitectonica"></option>
+                    <option value="Industrial"></option>
+                    <option value="Madera"></option>
+                </datalist>
+                
             </div>
+            <div class="input-group">
+                <label for="precio"><i class="fas fa-dollar-sign"></i> Precio</label>
+                <input type="text" id="precio" placeholder="0.00">
+            </div>
+            <div class="input-group">
+                <label for="codigo"><i class="fas fa-barcode"></i> Código</label>
+                <input type="text" id="codigo" placeholder="ID único">
+            </div>
+            <div class="input-group">
+                <label for="cantidad"><i class="fas fa-boxes"></i> Cantidad</label>
+                <input type="text" id="cantidad" placeholder="En stock">
+            </div>
+            <div class="input-group">
+                <label><i class="fas fa-image"></i> Imagen</label>
+                <label for="imagen" class="custom-file-label">
+                    <i class="fas fa-upload"></i> Seleccionar archivo
+                </label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" style="display:none">
+                <span id="nombre-imagen-agregar">Ningún archivo seleccionado</span>
+            </div>
+        </form>
+        <div id="btns-agregar">
+            <button type="submit" form="form-agregar">
+                <i class="fas fa-save"></i> Guardar
+            </button>
+            <button onclick="cerrarModalAgregar()">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
         </div>
-    </dialog>
+    </div>
+</dialog>
+
+<!-- Modal Eliminar -->
+<dialog id="seccion-eliminar">
+    <div id="contenido-eliminar">
+        <h2><i class="fas fa-trash-alt"></i> Eliminar Producto</h2>
+        <form id="form-eliminar">
+            <div class="input-group">
+                <label for="codigo-eliminar"><i class="fas fa-search"></i> Buscar por código</label>
+                <input type="text" id="codigo-eliminar" placeholder="Ingrese el código del producto">
+            </div>
+            <div class="preview-eliminar">
+                <img src="" alt="Vista previa" id="preview-eliminar" style="display:none; max-width:100%; border-radius:8px; margin:10px 0;">
+                <p id="info-eliminar" style="color:#64748b; font-size:0.9rem; text-align:center;">
+                    El producto aparecerá aquí al buscarlo
+                </p>
+            </div>
+        </form>
+        <div id="btns-eliminar">
+            <button type="submit" form="form-eliminar" id="btn-confirmar-eliminar" disabled>
+                <i class="fas fa-check-circle"></i> Confirmar
+            </button>
+            <button onclick="cerrarModalEliminar()">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+        </div>
+    </div>
+</dialog>
+
+<!-- Modal Actualizar -->
+<dialog id="seccion-actualizar">
+    <div id="contenido-actualizar">
+        <h2><i class="fas fa-sync-alt"></i> Actualizar Producto</h2>
+        <form id="form-actualizar">
+            <div class="input-group">
+                <label for="codigo-actualizar"><i class="fas fa-search"></i> Código del producto</label>
+                <input type="text" id="codigo-actualizar" placeholder="Ingrese el código existente">
+            </div>
+            <div class="input-group">
+                <label for="nombre-act"><i class="fas fa-tag"></i> Nuevo nombre</label>
+                <input type="text" id="nombre-act" placeholder="Nombre actualizado">
+            </div>
+            <div class="input-group">
+                <label for="descripcion-act"><i class="fas fa-align-left"></i> Nueva descripción</label>
+                <input type="text" id="descripcion-act" placeholder="Descripción actualizada">
+            </div>
+            <div class="input-group">
+                <label for="categoria-act"><i class="fas fa-align-left"></i>Nueva Categoria</label>
+                <input type="text" id="categoria-act" placeholder="Categoria Del Producto">
+            </div>
+            <div class="input-group">
+                <label for="precio-act"><i class="fas fa-dollar-sign"></i> Nuevo precio</label>
+                <input type="text" id="precio-act" placeholder="Precio actualizado">
+            </div>
+            <div class="input-group">
+                <label for="cantidad-act"><i class="fas fa-boxes"></i> Nueva cantidad</label>
+                <input type="text" id="cantidad-act" placeholder="Stock actualizado">
+            </div>
+            <div class="input-group">
+                <label><i class="fas fa-image"></i> Nueva imagen</label>
+                <label for="imagen-act" class="custom-file-label">
+                    <i class="fas fa-upload"></i> Cambiar imagen
+                </label>
+                <input type="file" id="imagen-act" name="imagen" accept="image/*" style="display:none">
+                <span id="nombre-imagen-actualizar">Mantener imagen actual</span>
+            </div>
+        </form>
+        <div id="btns-actualizar">
+            <button type="submit" form="form-actualizar">
+                <i class="fas fa-redo"></i> Actualizar
+            </button>
+            <button onclick="cerrarModalActualizar()">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+        </div>
+    </div>
+</dialog>
     <script src="../root/js/aside.js"></script>
     <script src="../root/js/inventario.js"></script>
     <script src="../root/js/modales.js"></script>

@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../root/css/root.css">
     <title>Usuarios</title>
 </head>
@@ -19,9 +20,9 @@
     <div id="aside"></div>
         <main id="usuarios">
             <h1>Usuarios Registrados</h1>
-            <section id="busqueda">
-                <form id="form-busqueda">
-                    <input type="text" id="buscar" name="buscar" placeholder="Buscar..."/>
+            <section id="busqueda2">
+                <form id="form-busqueda2">
+                    <input type="text" id="buscar2" name="buscar" placeholder="Buscar..."/>
                     <button type="submit">Buscar</button>
                 </form>
             </section>     
@@ -36,7 +37,7 @@
                 <tbody>
                     <?php
                         if(!isset($_SESSION["usuario-root"]["usuarios"])){
-                            echo '<p class="mensaje-vacio">No hay usuarios</p>';
+                            echo '<tr<class="mensaje-vacio">No hay usuarios</tr>';
                         } else {
                             foreach ($_SESSION["usuario-root"]["usuarios"] as $fila) {  ?>
                                 <tr>
