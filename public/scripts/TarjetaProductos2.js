@@ -30,7 +30,9 @@ function agregarAlCarrito(producto){
     if(!logeado){
         document.getElementById("modulo-mensajesesion").showModal();
         return;
-    }
+    } 
+        
+    document.getElementById("modulo-mensajeCarrito").showModal();
     
     let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
 
@@ -44,10 +46,9 @@ function agregarAlCarrito(producto){
     }
 
     sessionStorage.setItem('carrito', JSON.stringify(carrito));
-
-    alert('Producto agregado al carrito');
 }
 
 function cerrarModal(){
     document.getElementById("modulo-mensajesesion").close();
 }
+

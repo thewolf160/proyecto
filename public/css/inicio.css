@@ -194,7 +194,7 @@ p {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     padding: 1.5rem;
-    background: linear-gradient(135deg, #0f214d, #142b60);
+    background-color: #0b5fb0;
     margin-bottom: 20px;
 }
 
@@ -498,12 +498,143 @@ p {
 }
 
 
+/* Estilos para campos con error (se mantienen igual) */
+.campo-error {
+    border: 1px solid #ff0000 !important;
+    animation: shake 0.5s ease-in-out;
+}
 
+.campo-error::placeholder {
+    color: #ff0000 !important;
+    font-weight: bold !important;
+    opacity: 1 !important;
+}
 
+/* Estilos mejorados para el diálogo - VERSIÓN CENTRADA */
+dialog {
+    /* Diseño base */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    
+    /* Centrado absoluto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* Combinación de centrado + animación */
+    
+    /* Animación */
+    opacity: 0;
+    transition: all 0.3s ease;
+    
+    /* Evita que el modal sea interactivo cuando está cerrado */
+    pointer-events: none;
+}
 
+/* Cuando el diálogo está abierto */
+dialog[open] {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
 
+/* Contenido del diálogo */
+dialog .modal-contenido {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+}
 
+/* Estilo para el párrafo */
+dialog .modal-contenido p {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
+/* Estilo para el botón */
+dialog .modal-contenido #btn-aceptar {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
 
+dialog .modal-contenido #btn-aceptar:hover {
+    background: #3e8e41;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
 
+/* Fondo del diálogo */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    transition: backdrop-filter 0.3s ease;
+}
 
+/* Animación de shake para errores */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Efecto de hover para el checkmark */
+dialog .modal-contenido p::before {
+    content: "✅";
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+dialog .modal-contenido p:hover::before {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* ------------------------- */
+/* Soporte para navegadores antiguos */
+@supports not (selector(dialog)) {
+    .modal-fallback {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-fallback[open] {
+        display: flex;
+    }
+    
+    .modal-contenido {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 400px;
+        width: 90%;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}

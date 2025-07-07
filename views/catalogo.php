@@ -23,7 +23,7 @@
       <form action="../controllers/controllers_product/controlador_producto.php" method="POST">
         <input type="hidden" name="seccion" value="BusquedaNombres">
         <input type="hidden" name="tipoUsuario" value="usuario">
-        <input type="text" name="IBusqueda">
+        <input type="text" name="IBusqueda" placeholder="Buscar productos...">
         <input type="submit" value="Buscar">
       </form>
     </div>
@@ -47,6 +47,18 @@
         <div>
           <button onclick="window.location.href='inicio_sesion.php'">Iniciar Sesión</button>
           <button onclick="cerrarModal()">Cerrar</button> 
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="modulo-mensajeCarrito">
+      <div id="contenido">
+        <article>
+          <p>Su producto ha sido agregado al carrito. ¡Ahora puedes ir a verlo!</p>
+        </article>
+        <div>
+          <button onclick="window.location.href='carrito.php'">ir al carrito</button>
+          <button onclick="document.getElementById('modulo-mensajeCarrito').close()">Cerrar</button>  
         </div>
       </div>
     </dialog>

@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../root/css/root.css">
     <link rel="stylesheet" href="../root/css/ventas.css">
+    <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
 </head>
 <body>
     <div id="aside"></div>

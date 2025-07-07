@@ -2,10 +2,10 @@
     <aside>
         <nav>
             <ul>
-            <li><a onclick="document.getElementById('formulario_usuarios').submit();">Usuarios</a></li>
-            <li><a onclick="document.getElementById('formulario_inventario').submit();">Inventario</a></li>
-            <li><a onclick="document.getElementById('formulario_ventas').submit();">Ventas</a></li>
-            <li><a onclick="document.getElementById('formulario_cerrar_sesion').submit();">Cerrar Sesión</a></li>
+            <li><a onclick="document.getElementById('formulario_usuarios').submit();" id="usuarios">Usuarios</a></li>
+            <li><a onclick="document.getElementById('formulario_inventario').submit();" id="inventario">Inventario</a></li>
+            <li><a onclick="document.getElementById('formulario_ventas').submit();" id="ventas">Ventas</a></li>
+            <li><a onclick="document.getElementById('formTodo').submit();" id="cerrar">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </aside>
@@ -18,7 +18,7 @@
         <input type="hidden" name="seccion" value="MostrarTodos">
     </form>
 
-    <form id="formulario_cerrar_sesion" action="../controllers/controllers_user/controlador_usuario.php" method="POST"></form>
+    <form action="../controllers/controllers_user/controlador_usuario.php" method="POST" id="formTodo">
         <input type="hidden" name="seccion" value="CerrarSesion">
     </form>
 

@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
     <link rel="stylesheet" href="../root/css/root.css">
 
     <title>Gestor de Inventario</title>
@@ -41,10 +42,10 @@
             </form>
         </section>
 
-        <section>
+        <section id="Mostrar_Todos">
             <form action="../controllers/controllers_product/controlador_producto.php" method="POST">
                 <input type="hidden" name="seccion" value="Inventario">
-                <input type="submit" value="Ver Todos">
+                <input type="submit" value="Ver Todos" id="ver-todos">
             </form>
         </section>
 
@@ -93,14 +94,14 @@
                     <label for="cantidad"><i class="fas fa-boxes"></i> Cantidad</label>
                     <input type="text" id="cantidad" placeholder="En stock" name="IStock">
                 </div>
-                <!--<div class="input-group">
+                <<div class="input-group">
                     <label><i class="fas fa-image"></i> Imagen</label>
                     <label for="imagen" class="custom-file-label">
                         <i class="fas fa-upload"></i> Seleccionar archivo
                     </label>
                     <input type="file" id="imagen" name="imagen" accept="image/*" style="display:none">
                     <span id="nombre-imagen-agregar">Ningún archivo seleccionado</span>
-                </div>-->
+                </div>
             </form>
             <div id="btns-agregar">
                 <button type="submit" form="form-agregar">
@@ -173,14 +174,14 @@
                     <label for="cantidad-act"><i class="fas fa-boxes"></i> Nueva cantidad</label>
                     <input type="text" id="cantidad-act" placeholder="Stock actualizado" name="IStock">
                 </div>
-                <!--<div class="input-group">
+                <div class="input-group">
                     <label><i class="fas fa-image"></i> Nueva imagen</label>
                     <label for="imagen-act" class="custom-file-label">
                         <i class="fas fa-upload"></i> Cambiar imagen
                     </label>
                     <input type="file" id="imagen-act" name="imagen" accept="image/*" style="display:none">
                     <span id="nombre-imagen-actualizar">Mantener imagen actual</span>
-                </div>-->
+                </div>
             </form>
             <div id="btns-actualizar">
                 <button type="submit" form="form-actualizar">

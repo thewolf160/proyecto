@@ -740,4 +740,76 @@ main {
 }
 
 
+/* [Tu CSS existente permanece igual hasta el final] */
 
+/* Estilos para la sección Mostrar Todos */
+#Mostrar_Todos {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+#Mostrar_Todos form {
+    width: 100%;
+    max-width: 500px;
+}
+
+#ver-todos {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#ver-todos:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#ver-todos:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de pulso al cargar */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#ver-todos.loading {
+    animation: pulse 1.5s infinite;
+    position: relative;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #Mostrar_Todos {
+        margin: 1rem 0;
+    }
+    
+    #ver-todos {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #ver-todos {
+        width: 100%;
+    }
+}

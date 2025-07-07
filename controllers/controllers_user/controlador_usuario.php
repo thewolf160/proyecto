@@ -21,6 +21,7 @@
 
             case "inicio_sesion":
                 $resultado = $controlador->inicioSesion();
+                $usuarios = $controlador->ObtenerTodos();
 
                 if (is_string($resultado)) {
                     $_SESSION["Inicio_Sesion"]["Error"] = $resultado;
@@ -33,6 +34,7 @@
 
                 } else {
                     $_SESSION["usuario-root"] = $resultado;
+                    $_SESSION["usuario-root"]["usuarios"] = $usuarios;
                     header("location: ./../../root/usuarios.php");
                 }
                 exit();

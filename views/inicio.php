@@ -79,12 +79,12 @@
     </section>
 
     <section id="contacto">
-        <form action="" id="formulario-contacto">
-            <input type="text" name="nombre" class="entrada nombre" placeholder="Nombre">
-            <input type="text" name="apellido" class="entrada apellido" placeholder="Apellido">
-            <input type="email" name="correo" class="entrada correo" placeholder="Correo Electrónico">
-            <textarea name="mensaje" class="entrada mensaje" placeholder="Mensaje"></textarea>
-            <button type="submit" id="btn-formcontacto">Envíar Mensaje</button>
+        <form action="" id="formulario-contacto" method="POST">
+            <input type="text" name="nombre" class="entrada nombre" placeholder="Nombre" id="nombre">
+            <input type="text" name="apellido" class="entrada apellido" placeholder="Apellido" id="apellido">
+            <input type="email" name="correo" class="entrada correo" placeholder="Correo Electrónico" id="correo">
+            <textarea name="mensaje" class="entrada mensaje" placeholder="Mensaje" id="mensaje"></textarea>
+            <button id="btn-formcontacto" onclick="Validacion()">Envíar Mensaje</button>
         </form>
         <article id="texto-contacto">
             <h3 style="text-align: center;">!CONTACTANOS!</h3>
@@ -96,6 +96,15 @@
             </p>
         </article>
     </section>
+
+
+    <dialog id="modal-exito">
+        <div class="modal-contenido">
+            <p>El formulario se ha enviado correctamente.</p>
+            <button id="btn-aceptar">Aceptar</button>
+        </div>
+    </dialog>
+
     <footer id="pie-pagina">
         <article class="seccion-footer">
             <h3>¿Sabes quién está detras de tus pinturas?</h3>
@@ -106,7 +115,7 @@
             <p>En nuestra tienda, no solo vendemos pintura...<br>¡Te ayudamos a elegir la pintura perfecta</p>
         </article>
         <article class="seccion-footer">
-            <h3>¡CONTACTANOS!</h3>
+            <h3>¡¡¡CONTACTANOS!!!</h3>
             <p>0416-4537225<br>0414-5026386</p>
             <p><a href="mailto:Todocolorlara@gmail.com">todocolorlara@gmail.com</a></p>
             <p>Carrera 19, entre calle 60 y 61</p>
@@ -124,5 +133,7 @@
             echo "<script src='../public/scripts/navbar.js'></script>";
         }
     ?>
+
+    <script src="../public/scripts/contacto.js"></script>
 </body>
 </html>

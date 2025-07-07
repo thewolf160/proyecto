@@ -8,15 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../root/css/root.css">
+    <link rel="icon" type="image/png" href="../public/imagenes/icon.png">
+     <link rel="stylesheet" href="../root/css/root.css">
     <title>Usuarios</title>
 </head>
 <body>
-
-    <form id="formulario_usuarios" action="../controllers/controllers_user/controlador_usuario.php" method="POST">
-        <input type="hidden" name="seccion" value="MostrarTodos">
-    </form>
-
     <div id="aside"></div>
         <main id="usuarios">
             <h1>Usuarios Registrados</h1>
@@ -28,10 +24,12 @@
                 </form>
             </section> 
             
-            <form action="../controllers/controllers_user/controlador_usuario.php" method="POST">
-                <input type="hidden" name="seccion" value="MostrarTodos">
-                <input type="submit" value="Ver Todos" class="btnver">
-            </form>
+            <section id="Mostrar_Todos">
+                <form id="formulario_usuarios" action="../controllers/controllers_user/controlador_usuario.php" method="POST">
+                    <input type="hidden" name="seccion" value="MostrarTodos">
+                    <input type="submit" value="Ver Todos" id="ver-todos">
+                </form>
+            </section>
             
             <table id="table-usuarios">
                 <tr>
@@ -61,13 +59,5 @@
             </table>
         </main>
     <script src="../root/js/aside.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            if (!sessionStorage.getItem('formulario_enviado')) {
-                document.getElementById('formulario_usuarios').submit();
-                sessionStorage.setItem('formulario_enviado', 'true'); 
-            }
-        });
-    </script>
 </body>
 </html>
