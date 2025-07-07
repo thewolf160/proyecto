@@ -2,28 +2,27 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-body{
+body {
     display: grid;
-    grid-template-rows: 3.75rem 40rem 37.5rem 50rem 25rem;
+    grid-template-rows: auto minmax(600px, 90vh) auto auto auto;
     font-family: 'Montserrat', sans-serif;
     background-color: #f4f6fa;
     line-height: 1.6;
     color: #333;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-
-#seccion-principal{
+/* Sección Principal */
+#seccion-principal {
     display: flex;
     grid-row: 2/3;
     justify-content: center;
@@ -32,51 +31,53 @@ a{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 80vh;
-    min-height: 500px;
+    height: auto;
+    min-height: 90vh;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
+    overflow: hidden;
 }
 
-
-
 #seccion-principal::before {
-    content: '';
+     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
+    background-image: url('../imagenes/pinturas2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
-#contenido-principal{
+#contenido-principal {
     display: flex;
     flex-direction: column;
     color: white;
     gap: 10px;
     text-align: center;
-    width: 600px;
+    width: 90%;
+    max-width: 800px;
     position: relative;
     z-index: 1;
-    max-width: 800px;
-    padding: 2rem;
+    padding: 1rem;
 }
 
-
-h1{
+h1 {
     margin: 0;
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2rem, 6vw, 5rem);
     line-height: 1.1;
     margin-bottom: 1rem;
 }
 
-p{
-    font-size: 18px;
+p {
+    font-size: 16px;
 }
 
-#btnexplorar{
-    padding: 10px;
+/* Botones */
+#btnexplorar {
     align-self: center;
     border: none;
     border-radius: 5px;
@@ -96,40 +97,41 @@ p{
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     background-color: #094b8c;
-    
 }
 
-.categorias{
+
+.categorias {
     grid-row: 3/4;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 20px;
-    padding: 40px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-
 }
 
-#texto-categorias{
+#texto-categorias {
     grid-column: 1 / -1;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     color: #0f214d;
     margin-bottom: 20px;
 }
 
 #texto-categorias p {
-    font-size: 22px;
+    font-size: 18px;
     color: #555;
 }
 
-.categoria{
+.categoria {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 250px;
+    cursor: pointer;
 }
 
 .categoria:hover {
@@ -137,8 +139,8 @@ p{
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.categoria img{
-   width: 100%;
+.categoria img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
     filter: brightness(90%);
@@ -150,63 +152,40 @@ p{
     transform: scale(1.03);
 }
 
-.categoria.domestica{
-   grid-row: 2 / span 2;
-    grid-column: 1;
-}
-
-.categoria.industrial{
-   grid-row: 3;
-    grid-column: 2 / span 2;
-}
-
-.categoria.madera{
-    grid-row: 2;
-    grid-column: 2;
-}
-
-.categoria.arquitectonica{
-   grid-row: 2;
-    grid-column: 3;
-}
-
-
-
-.categoria a{
+.categoria a {
     display: block;
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.texto-superpuesto{
-   position: absolute;
+.texto-superpuesto {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
     opacity: 0.9;
     transition: opacity 0.3s ease, font-size 0.3s ease;
 }
 
-#contacto{
+#contacto {
     grid-row: 4/5;
     display: flex;
-    justify-content: space-between;
-    gap: 40px;
+    flex-direction: column;
+    gap: 20px;
     max-width: 1200px;
-    margin: 4rem auto;
-    padding: 2rem;
+    margin: 2rem auto;
+    padding: 1rem;
     align-items: center;
-    
 }
 
-#formulario-contacto{
-    height: 80%;
-    width: 45%;
+#formulario-contacto {
+    width: 90%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -214,19 +193,21 @@ p{
     gap: 6%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    padding: 2rem;
+    padding: 1.5rem;
     background: linear-gradient(135deg, #0f214d, #142b60);
+    margin-bottom: 20px;
 }
 
-#texto-contacto{
-    width: 50%;
+#texto-contacto {
+    width: 90%;
+    text-align: center;
 }
 
 #formulario-contacto input,
 #formulario-contacto textarea {
     background-color: white;
     resize: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0 5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     width: 100%;
     padding: 0.8rem;
     border: none;
@@ -237,25 +218,23 @@ p{
 }
 
 #formulario-contacto textarea {
-    height: 35%;
-    
+    height: 150px;
 }
 
 #formulario-contacto input:hover,
-#formulario-contacto textarea:hover{
+#formulario-contacto textarea:hover {
     background-color: #f0f0f0;
 }
 
-
 #formulario-contacto input:focus,
-#formulario-contacto textarea:focus{
+#formulario-contacto textarea:focus {
     outline: none;
     box-shadow: 0 0 0 0.3vw rgba(0, 74, 173, 0.5);
 }
 
-#btn-formcontacto{
+#btn-formcontacto {
     width: 60%;
-    height: 10%;
+    height: auto;
     border-radius: 5px;
     border: none;
     background-color: white;
@@ -272,32 +251,33 @@ p{
     transform: translateY(-2px);
 }
 
-#pie-pagina{
+/* Footer */
+#pie-pagina {
     grid-row: 5/6;
-    height: 100%;
+    height: auto;
     border-top: 2px solid #0f214d;
     display: flex;
-    justify-content: space-between;
-    background-color: #f4f6fa;   
-    padding: 3rem 2rem;
+    flex-direction: column;
+    background-color: #f4f6fa;
+    padding: 2rem 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-.seccion-footer{
-    margin: 10px;
+.seccion-footer {
+    margin: 10px 0;
     flex: 1;
-    min-width: 250px;
-    padding: 1rem;
+    padding: 0.5rem;
+    text-align: center;
 }
 
-.seccion-footer h3{
+.seccion-footer h3 {
     color: #0f214d;
     margin-bottom: 1rem;
     font-size: 1.2rem;
 }
 
-.seccion-footer p{  
+.seccion-footer p {
     margin-bottom: 0.5rem;
     color: #0f214d;
 }
@@ -320,15 +300,202 @@ p{
     width: 90%;
     text-align: center;
     padding: 1rem 0 1rem 0;
-    background: transparent; 
+    background: transparent;
     border-top: 1px solid gray;
 }
 
-.parte-inferior p{
+.parte-inferior p {
     font-size: 1rem;
 }
 
+/* Media Queries para Tablet */
+@media (min-width: 768px) {
+    #contenido-principal {
+        padding: 2rem;
+    }
 
+    .categorias {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40px;
+    }
+
+    .categoria.domestica {
+        grid-row: 2 / span 2;
+        grid-column: 1;
+        height: 100%;
+    }
+
+    .categoria.industrial {
+        grid-row: 3;
+        grid-column: 2;
+    }
+
+    .categoria.madera {
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .categoria.arquitectonica {
+        grid-row: 4;
+        grid-column: 1 / span 2;
+    }
+
+    #contacto {
+        flex-direction: row;
+        gap: 40px;
+        padding: 2rem;
+    }
+
+    #formulario-contacto {
+        width: 45%;
+        height: 80%;
+        margin-bottom: 0;
+    }
+
+    #texto-contacto {
+        width: 50%;
+        text-align: left;
+    }
+
+    #pie-pagina {
+        flex-direction: row;
+        padding: 3rem 2rem;
+    }
+
+    .seccion-footer {
+        text-align: left;
+    }
+}
+
+/* Media Queries para Desktop */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    #texto-categorias {
+        font-size: 24px;
+    }
+
+    #texto-categorias p {
+        font-size: 22px;
+    }
+
+    .categorias {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .categoria.domestica {
+        grid-row: 2 / span 2;
+        grid-column: 1;
+    }
+
+    .categoria.industrial {
+        grid-row: 3;
+        grid-column: 2 / span 2;
+    }
+
+    .categoria.madera {
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .categoria.arquitectonica {
+        grid-row: 2;
+        grid-column: 3;
+    }
+
+    .texto-superpuesto {
+        font-size: 1.1rem;
+    }
+}
+
+/* Reemplaza la sección actual del formulario con este código */
+
+#formulario-contacto {
+    width: 90%;
+    max-width: 500px; /* Limitar el ancho máximo para mejor legibilidad */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio uniforme entre elementos */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    background: linear-gradient(135deg, #0f214d, #142b60);
+    margin-bottom: 20px;
+}
+
+#formulario-contacto input,
+#formulario-contacto textarea {
+    background-color: white;
+    resize: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem; /* Tamaño de fuente más legible */
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Estilo específico para los inputs normales */
+#formulario-contacto input {
+    height: 50px; /* Altura fija cómoda para tocar en móviles */
+}
+
+/* Estilo específico para el textarea de mensaje */
+#formulario-contacto textarea {
+    height: 150px; /* Altura suficiente para escribir un mensaje */
+    min-height: 150px; /* Evita que se haga muy pequeño */
+    max-height: 250px; /* Limitar crecimiento máximo */
+}
+
+/* Estilo para el botón de enviar */
+#btn-formcontacto {
+    width: 100%; /* Ocupar todo el ancho disponible */
+    height: 50px; /* Misma altura que los inputs */
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(72, 68, 68);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 10px; /* Espacio adicional arriba */
+}
+
+#btn-formcontacto:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* Ajustes para pantallas más grandes */
+@media (min-width: 768px) {
+    #formulario-contacto {
+        width: 45%;
+        max-width: none; /* Permitir que crezca en desktop */
+        padding: 2.5rem;
+    }
+    
+    #formulario-contacto textarea {
+        height: 180px; /* Más espacio en desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        grid-template-rows: auto minmax(500px, 85vh) auto auto auto;
+    }
+    #seccion-principal {
+        min-height: 85vh;
+    }
+}
 
 
 

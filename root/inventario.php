@@ -28,7 +28,7 @@
         </section>
 
         <section id="barra-superior">
-            <h2>Productos Disponibles</h2> <!-- Moví el título aquí -->
+            <h2>Productos Disponibles</h2> 
             <form id="form-busqueda" method="POST" action="../controllers/controllers_product/controlador_producto.php">
                 <input type="hidden" name="seccion" value="BusquedaNombres">
                 <input type="hidden" name="tipoUsuario" value="root">

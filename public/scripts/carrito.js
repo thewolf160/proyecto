@@ -5,7 +5,7 @@ function mostrarProductosCarrito(){
     contenedor.innerHTML = '';
 
     if(carrito.length === 0){
-        contenedor.innerHTML = '<p class="mensaje-vacio">El carrito está vacío</p>';
+        contenedor.innerHTML = '<p class="mensaje-vacio">Tú carrito está vacío por ahora. Agrega productos para comenzar tu compra.</p>';
         return;
     }
 

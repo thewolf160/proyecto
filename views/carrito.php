@@ -13,6 +13,10 @@
 <body>
     <div id="navbar"></div>
 
+    <article id="mensaje">
+        <h3>¡Bienvenido a tu carrito de compras!</h3>
+        <p>Aquí tienes todo lo que has elegido. Este es tu espacio para revisar, ajustar y asegurarte de que todo este perfecto antes de realizar tu pedido.</p>
+    </article>
     <main>
         <section id="items-carro" class="items-carro"></section>
         <section id="pedido">
@@ -72,8 +76,7 @@
                 <p>Usted tiene 10 días hábiles para ir a retirar su pedido, de no asistir en el tiempo establecido su compra será anulada.</p>
             </article>
             <div id="btns-otros">
-                <button type="submit">Aceptar</button>
-                <button type="button" onclick="cerrarModalOtros()">Cancelar</button>
+                <button type="button" onclick="cerrarModalOtros()">Cerrar</button>
             </div>
         </div>
     </dialog>

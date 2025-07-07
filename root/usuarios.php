@@ -30,7 +30,7 @@
             
             <form action="../controllers/controllers_user/controlador_usuario.php" method="POST">
                 <input type="hidden" name="seccion" value="MostrarTodos">
-                <input type="submit" value="Ver Todos">
+                <input type="submit" value="Ver Todos" class="btnver">
             </form>
             
             <table id="table-usuarios">

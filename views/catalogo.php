@@ -20,7 +20,6 @@
     <h1>Pinturas</h1>
 
     <div class="contenedor-busqueda" role="search">
-      <span class="material-icons" aria-hidden="true">search</span>
       <form action="../controllers/controllers_product/controlador_producto.php" method="POST">
         <input type="hidden" name="seccion" value="BusquedaNombres">
         <input type="hidden" name="tipoUsuario" value="usuario">
